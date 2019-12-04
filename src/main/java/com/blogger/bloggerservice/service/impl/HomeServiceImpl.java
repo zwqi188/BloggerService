@@ -2,6 +2,7 @@ package com.blogger.bloggerservice.service.impl;
 
 import com.blogger.bloggerservice.model.User;
 import com.blogger.bloggerservice.repository.HomeRepository;
+import com.blogger.bloggerservice.response.Response;
 import com.blogger.bloggerservice.service.HomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
@@ -19,7 +20,9 @@ public class HomeServiceImpl implements HomeService {
     private HomeRepository homeRepository;
 
     @Override
-    public List<User> getUser() {
-        return homeRepository.findAll();
+    public Response getUser() {
+        Response response = Response.success();
+        response.setData(homeRepository.findAll());
+        return response;
     }
 }

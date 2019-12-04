@@ -2,6 +2,7 @@ package com.blogger.bloggerservice.controller;
 
 import com.blogger.bloggerservice.model.User;
 import com.blogger.bloggerservice.service.HomeService;
+import com.blogger.bloggerservice.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,9 +28,9 @@ public class HomeController {
 
     @RequestMapping(value = "/get.json", method = RequestMethod.GET)
     @ResponseBody
-    public List<User> get() {
+    public String get() {
         System.out.println("get!");
-        return homeService.getUser();
+        return JsonUtils.objectToString(homeService.getUser());
     }
 
 }
