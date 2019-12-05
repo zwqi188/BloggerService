@@ -1,13 +1,13 @@
 package com.blogger.bloggerservice.controller;
 
+import com.blogger.bloggerservice.form.QueryForm;
 import com.blogger.bloggerservice.model.User;
 import com.blogger.bloggerservice.service.HomeService;
 import com.blogger.bloggerservice.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,6 +15,7 @@ import java.util.List;
  * @author admin
  */
 @Controller
+@Validated
 public class HomeController {
 
     @Autowired
@@ -29,6 +30,13 @@ public class HomeController {
     @RequestMapping(value = "/get.json", method = RequestMethod.GET)
     @ResponseBody
     public String get() {
+        System.out.println("get!");
+        return JsonUtils.objectToString(homeService.getUser());
+    }
+
+    @RequestMapping(value = "/testForm.json", method = RequestMethod.POST)
+    @ResponseBody
+    public String testForm(@Validated(value = QueryForm.Query.class) QueryForm form) {
         System.out.println("get!");
         return JsonUtils.objectToString(homeService.getUser());
     }

@@ -49,6 +49,10 @@ public class Response {
         return new Response("1001", respMsg);
     }
 
+    public static Response fail(StringBuilder respMsg){
+        return new Response("1001", "失败", respMsg);
+    }
+
     public String getRespCode() {
         return respCode;
     }
