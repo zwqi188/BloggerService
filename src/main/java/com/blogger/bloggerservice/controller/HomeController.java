@@ -14,8 +14,8 @@ import java.util.List;
 /**
  * @author admin
  */
-@Controller
 @Validated
+@Controller
 public class HomeController {
 
     @Autowired
