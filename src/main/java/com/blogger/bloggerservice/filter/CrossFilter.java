@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by mac on 2019/4/6.
+ *
+ * @date 2019/4/6
  * 过滤器，解决跨域问题
  */
 @Component("CrossFilter")

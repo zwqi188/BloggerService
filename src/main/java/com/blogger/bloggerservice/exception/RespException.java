@@ -2,12 +2,14 @@ package com.blogger.bloggerservice.exception;
 
 
 import com.blogger.bloggerservice.enums.ResponseEnums;
-import com.blogger.bloggerservice.response.Response;
+import com.blogger.bloggerservice.response.ResultVo;
 
 /**
- * Created by apple on 19/3/18.
+ *
+ * @author apple
+ * @date 19/3/18
  */
-public class RespException {
+public class RespException extends Exception {
 
     private String respCode;
 
@@ -42,7 +44,7 @@ public class RespException {
         this.respMsg = respMsg;
     }
 
-    public Response toResopnse() {
-        return new Response(this.respCode, this.respMsg);
+    public ResultVo toResopnse() {
+        return new ResultVo(this.respCode, this.respMsg);
     }
 }

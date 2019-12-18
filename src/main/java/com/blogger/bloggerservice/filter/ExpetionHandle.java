@@ -1,22 +1,15 @@
 package com.blogger.bloggerservice.filter;
 
 
-import com.blogger.bloggerservice.response.Response;
-import com.blogger.bloggerservice.utils.JsonUtils;
+import com.blogger.bloggerservice.response.ResultVo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  *
@@ -35,7 +28,7 @@ public class ExpetionHandle {
      */
     @ExceptionHandler(BindException.class)
     @ResponseBody
-    public Response handleRespException(BindException e) {
+    public ResultVo handleRespException(BindException e) {
         BindingResult bindingResult = ((BindException)e).getBindingResult();
         StringBuilder errMsg = new StringBuilder();
         for (int i = 0 ; i < bindingResult.getFieldErrors().size() ; i++) {
@@ -46,6 +39,6 @@ public class ExpetionHandle {
             errMsg.append(error.getDefaultMessage());
         }
 
-        return Response.fail(errMsg);
+        return ResultVo.fail(errMsg);
     }
 }
