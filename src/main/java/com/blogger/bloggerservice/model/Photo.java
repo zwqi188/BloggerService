@@ -1,7 +1,5 @@
 package com.blogger.bloggerservice.model;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -10,8 +8,6 @@ import java.util.Date;
 /**
  * @author admin
  */
-@Getter
-@Setter
 @Entity
 @Table(name="tb_photo")
 public class Photo {
@@ -51,4 +47,51 @@ public class Photo {
     @Column(name="updated_at")
     private Date updatedAt;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getPhotoAddr() {
+        return photoAddr;
+    }
+
+    public void setPhotoAddr(String photoAddr) {
+        this.photoAddr = photoAddr;
+    }
+
+    public String getPhotoInfo() {
+        return photoInfo;
+    }
+
+    public void setPhotoInfo(String photoInfo) {
+        this.photoInfo = photoInfo;
+    }
+
+    public String getMasterId() {
+        return masterId;
+    }
+
+    public void setMasterId(String masterId) {
+        this.masterId = masterId;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }

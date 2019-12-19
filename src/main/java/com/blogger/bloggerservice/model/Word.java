@@ -1,7 +1,5 @@
 package com.blogger.bloggerservice.model;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -11,8 +9,6 @@ import java.util.Date;
  * @author admin
  * 留言表
  */
-@Getter
-@Setter
 @Entity
 @Table(name="tb_word")
 public class Word {
@@ -54,4 +50,51 @@ public class Word {
     @Column(name="updated_at")
     private Date updatedAt;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getWordTitle() {
+        return wordTitle;
+    }
+
+    public void setWordTitle(Integer wordTitle) {
+        this.wordTitle = wordTitle;
+    }
+
+    public String getWordContent() {
+        return wordContent;
+    }
+
+    public void setWordContent(String wordContent) {
+        this.wordContent = wordContent;
+    }
+
+    public String getMasterId() {
+        return masterId;
+    }
+
+    public void setMasterId(String masterId) {
+        this.masterId = masterId;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }

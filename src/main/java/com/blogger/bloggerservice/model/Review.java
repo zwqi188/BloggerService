@@ -1,7 +1,5 @@
 package com.blogger.bloggerservice.model;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -11,8 +9,6 @@ import java.util.Date;
  * @author admin
  * 回复表
  */
-@Getter
-@Setter
 @Entity
 @Table(name="tb_review")
 public class Review {
@@ -66,4 +62,67 @@ public class Review {
     @Column(name="updated_at")
     private Date updatedAt;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
+    }
+
+    public Integer getMasterId() {
+        return masterId;
+    }
+
+    public void setMasterId(Integer masterId) {
+        this.masterId = masterId;
+    }
+
+    public Integer getHasReplay() {
+        return hasReplay;
+    }
+
+    public void setHasReplay(Integer hasReplay) {
+        this.hasReplay = hasReplay;
+    }
+
+    public Integer getReviewContent() {
+        return reviewContent;
+    }
+
+    public void setReviewContent(Integer reviewContent) {
+        this.reviewContent = reviewContent;
+    }
+
+    public String getReviewStatus() {
+        return reviewStatus;
+    }
+
+    public void setReviewStatus(String reviewStatus) {
+        this.reviewStatus = reviewStatus;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }

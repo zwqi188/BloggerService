@@ -1,7 +1,5 @@
 package com.blogger.bloggerservice.model;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -10,8 +8,6 @@ import java.util.Date;
 /**
  * @author admin
  */
-@Getter
-@Setter
 @Entity
 @Table(name="tb_master")
 public class Master {
@@ -69,4 +65,75 @@ public class Master {
     @Column(name="updated_at")
     private Date updatedAt;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getLoginName() {
+        return loginName;
+    }
+
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
+    }
+
+    public String getMasterName() {
+        return masterName;
+    }
+
+    public void setMasterName(String masterName) {
+        this.masterName = masterName;
+    }
+
+    public String getMasterPassword() {
+        return masterPassword;
+    }
+
+    public void setMasterPassword(String masterPassword) {
+        this.masterPassword = masterPassword;
+    }
+
+    public String getMasterGender() {
+        return masterGender;
+    }
+
+    public void setMasterGender(String masterGender) {
+        this.masterGender = masterGender;
+    }
+
+    public String getMasterEmail() {
+        return masterEmail;
+    }
+
+    public void setMasterEmail(String masterEmail) {
+        this.masterEmail = masterEmail;
+    }
+
+    public Integer getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(Integer isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }

@@ -1,7 +1,5 @@
 package com.blogger.bloggerservice.model;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -10,8 +8,6 @@ import java.util.Date;
 /**
  * @author admin
  */
-@Getter
-@Setter
 @Entity
 @Table(name="tb_article")
 public class Article {
@@ -76,4 +72,83 @@ public class Article {
     @Column(name="updated_at")
     private Date updatedAt;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getArticleTypeId() {
+        return articleTypeId;
+    }
+
+    public void setArticleTypeId(Integer articleTypeId) {
+        this.articleTypeId = articleTypeId;
+    }
+
+    public String getArticleTitle() {
+        return articleTitle;
+    }
+
+    public void setArticleTitle(String articleTitle) {
+        this.articleTitle = articleTitle;
+    }
+
+    public String getArticleContent() {
+        return articleContent;
+    }
+
+    public void setArticleContent(String articleContent) {
+        this.articleContent = articleContent;
+    }
+
+    public String getArticleInfo() {
+        return articleInfo;
+    }
+
+    public void setArticleInfo(String articleInfo) {
+        this.articleInfo = articleInfo;
+    }
+
+    public Integer getArticleCount() {
+        return articleCount;
+    }
+
+    public void setArticleCount(Integer articleCount) {
+        this.articleCount = articleCount;
+    }
+
+    public String getArticleFrom() {
+        return articleFrom;
+    }
+
+    public void setArticleFrom(String articleFrom) {
+        this.articleFrom = articleFrom;
+    }
+
+    public Integer getMasterId() {
+        return masterId;
+    }
+
+    public void setMasterId(Integer masterId) {
+        this.masterId = masterId;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }

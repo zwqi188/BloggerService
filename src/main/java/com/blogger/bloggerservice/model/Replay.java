@@ -1,7 +1,5 @@
 package com.blogger.bloggerservice.model;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -11,8 +9,6 @@ import java.util.Date;
  * @author admin
  * 回复表
  */
-@Getter
-@Setter
 @Entity
 @Table(name="tb_replay")
 public class Replay {
@@ -72,4 +68,75 @@ public class Replay {
     @Column(name="updated_at")
     private Date updatedAt;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getReviewId() {
+        return reviewId;
+    }
+
+    public void setReviewId(Integer reviewId) {
+        this.reviewId = reviewId;
+    }
+
+    public Integer getMasterId() {
+        return masterId;
+    }
+
+    public void setMasterId(Integer masterId) {
+        this.masterId = masterId;
+    }
+
+    public Integer getHasReplay() {
+        return hasReplay;
+    }
+
+    public void setHasReplay(Integer hasReplay) {
+        this.hasReplay = hasReplay;
+    }
+
+    public Integer getReplayId() {
+        return replayId;
+    }
+
+    public void setReplayId(Integer replayId) {
+        this.replayId = replayId;
+    }
+
+    public Integer getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
+    }
+
+    public String getReplayContent() {
+        return replayContent;
+    }
+
+    public void setReplayContent(String replayContent) {
+        this.replayContent = replayContent;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }
