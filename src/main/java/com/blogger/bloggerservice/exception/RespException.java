@@ -5,7 +5,6 @@ import com.blogger.bloggerservice.enums.ResponseEnums;
 import com.blogger.bloggerservice.response.ResultVo;
 
 /**
- *
  * @author apple
  * @date 19/3/18
  */
@@ -15,7 +14,8 @@ public class RespException extends Exception {
 
     private String respMsg;
 
-    public RespException() {}
+    public RespException() {
+    }
 
     public RespException(String respCode, String respMsg) {
         this.respCode = respCode;

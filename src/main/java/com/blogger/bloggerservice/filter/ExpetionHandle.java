@@ -1,6 +1,7 @@
 package com.blogger.bloggerservice.filter;
 
 
+import com.blogger.bloggerservice.enums.ResponseEnums;
 import com.blogger.bloggerservice.response.ResultVo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -38,7 +39,8 @@ public class ExpetionHandle {
             FieldError error = bindingResult.getFieldErrors().get(i);
             errMsg.append(error.getDefaultMessage());
         }
-
-        return ResultVo.fail(errMsg);
+        ResultVo resultVo = new ResultVo(ResponseEnums.EXP_FIL_CHECK_PARAM);
+        resultVo.setData(errMsg);
+        return resultVo;
     }
 }

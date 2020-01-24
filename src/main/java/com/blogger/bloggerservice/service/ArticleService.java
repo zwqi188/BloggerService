@@ -14,4 +14,11 @@ public interface ArticleService {
      * @return
      */
     ResultVo uploadArticle(ArticleForm articleForm);
+
+    /**
+     * 获取博客列表信息（分页）
+     * @param articleForm
+     * @return
+     */
+    ResultVo getBlogList(ArticleForm articleForm);
 }

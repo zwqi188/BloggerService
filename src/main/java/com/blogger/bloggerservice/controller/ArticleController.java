@@ -6,7 +6,6 @@ import com.blogger.bloggerservice.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,7 +23,15 @@ public class ArticleController {
 
     @RequestMapping(value = "/uploadArticle.json", method = RequestMethod.POST)
     @ResponseBody
-    public String uploadArticle(@Validated(value = ArticleForm.uploadArticle.class) ArticleForm articleForm) {
+    public String uploadArticle(@Validated(value = ArticleForm.UploadArticle.class) ArticleForm articleForm) {
         return JsonUtils.objectToString(articleService.uploadArticle(articleForm));
     }
+
+
+    @RequestMapping(value = "/getBlogList.json", method = RequestMethod.POST)
+    @ResponseBody
+    public String getBlogList(@Validated(value = ArticleForm.BlogList.class) ArticleForm articleForm) {
+        return JsonUtils.objectToString(articleService.getBlogList(articleForm));
+    }
+
 }

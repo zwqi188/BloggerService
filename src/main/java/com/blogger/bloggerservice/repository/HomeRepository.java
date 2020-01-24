@@ -1,7 +1,7 @@
 package com.blogger.bloggerservice.repository;
 
-import com.blogger.bloggerservice.model.Master;
+import com.blogger.bloggerservice.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface HomeRepository extends JpaRepository<Master, Integer> {
+public interface HomeRepository extends JpaRepository<User, Integer> {
 }

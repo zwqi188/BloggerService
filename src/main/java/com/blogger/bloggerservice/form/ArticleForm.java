@@ -7,16 +7,28 @@ import javax.validation.constraints.NotNull;
  */
 public class ArticleForm {
 
-    @NotNull(message = "博客内容不能为空", groups = {uploadArticle.class})
-    private String articleContent;
+    @NotNull(message = "博客分类不能为空", groups = {UploadArticle.class})
+    private Integer articleTypeId;
 
-    @NotNull(message = "博客分类不能为空", groups = {uploadArticle.class})
-    private Integer articleType;
-
-    @NotNull(message = "博客标题不能为空", groups = {uploadArticle.class})
+    @NotNull(message = "博客标题不能为空", groups = {UploadArticle.class})
     private String articleTitle;
 
-    private Integer masterId;
+    @NotNull(message = "博客内容不能为空", groups = {UploadArticle.class})
+    private String articleContent;
+
+    @NotNull(message = "用户id不能为空", groups = {UploadArticle.class})
+    private Integer userId;
+
+    /**
+     * 页码大小
+     */
+    @NotNull(message = "页码大小不能为空", groups = {BlogList.class})
+    private Integer pageSize;
+    /**
+     * 当前页
+     */
+    @NotNull(message = "当前页不能为空", groups = {BlogList.class})
+    private Integer pageIndex;
 
     public String getArticleContent() {
         return articleContent;
@@ -24,22 +36,6 @@ public class ArticleForm {
 
     public void setArticleContent(String articleContent) {
         this.articleContent = articleContent;
-    }
-
-    public Integer getArticleType() {
-        return articleType;
-    }
-
-    public void setArticleType(Integer articleType) {
-        this.articleType = articleType;
-    }
-
-    public Integer getMasterId() {
-        return masterId;
-    }
-
-    public void setMasterId(Integer masterId) {
-        this.masterId = masterId;
     }
 
     public String getArticleTitle() {
@@ -50,5 +46,41 @@ public class ArticleForm {
         this.articleTitle = articleTitle;
     }
 
-    public interface uploadArticle {}
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getArticleTypeId() {
+        return articleTypeId;
+    }
+
+    public void setArticleTypeId(Integer articleTypeId) {
+        this.articleTypeId = articleTypeId;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public Integer getPageIndex() {
+        return pageIndex;
+    }
+
+    public void setPageIndex(Integer pageIndex) {
+        this.pageIndex = pageIndex;
+    }
+
+    public interface UploadArticle {
+    }
+
+    public interface BlogList {
+    }
 }

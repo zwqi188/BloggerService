@@ -59,8 +59,8 @@ public class Article {
     /**
      * 创作人id
      */
-    @Column(name="master_id")
-    private Integer masterId;
+    @Column(name="user_id")
+    private Integer userId;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -128,14 +128,6 @@ public class Article {
         this.articleFrom = articleFrom;
     }
 
-    public Integer getMasterId() {
-        return masterId;
-    }
-
-    public void setMasterId(Integer masterId) {
-        this.masterId = masterId;
-    }
-
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -150,5 +142,13 @@ public class Article {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 }
