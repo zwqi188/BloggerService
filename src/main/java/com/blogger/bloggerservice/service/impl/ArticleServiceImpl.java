@@ -5,15 +5,16 @@ import com.blogger.bloggerservice.constant.Param;
 import com.blogger.bloggerservice.form.ArticleForm;
 import com.blogger.bloggerservice.model.Article;
 import com.blogger.bloggerservice.repository.ArticleReposity;
+import com.blogger.bloggerservice.repository.ArticleTypeRepository;
 import com.blogger.bloggerservice.response.ResultVo;
 import com.blogger.bloggerservice.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author admin
@@ -23,6 +24,9 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Autowired
     private ArticleReposity articleReposity;
+
+    @Autowired
+    private ArticleTypeRepository articleTypeRepository;
 
     /**
      * 上传博客文章
@@ -61,6 +65,17 @@ public class ArticleServiceImpl implements ArticleService {
         returnMap.put(Param.CURRENT_PAGE, articleForm.getPageIndex());
         ResultVo resultVo = ResultVo.success();
         resultVo.setData(returnMap);
+        return resultVo;
+    }
+
+    /**
+     * 获取博客分类
+     * @return
+     */
+    @Override
+    public ResultVo getArticleType() {
+        ResultVo resultVo = ResultVo.success();
+        resultVo.setData(articleTypeRepository.getArticleType());
         return resultVo;
     }
 }

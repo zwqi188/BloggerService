@@ -21,4 +21,10 @@ public interface ArticleService {
      * @return
      */
     ResultVo getBlogList(ArticleForm articleForm);
+
+    /**
+     * 获取博客分类
+     * @return
+     */
+    ResultVo getArticleType();
 }

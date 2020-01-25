@@ -16,7 +16,6 @@ public class ArticleForm {
     @NotNull(message = "博客内容不能为空", groups = {UploadArticle.class})
     private String articleContent;
 
-    @NotNull(message = "用户id不能为空", groups = {UploadArticle.class})
     private Integer userId;
 
     /**

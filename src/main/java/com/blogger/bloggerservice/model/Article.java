@@ -1,5 +1,6 @@
 package com.blogger.bloggerservice.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -62,13 +63,9 @@ public class Article {
     @Column(name="user_id")
     private Integer userId;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name="created_at")
     private Date createdAt;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name="updated_at")
     private Date updatedAt;
 
