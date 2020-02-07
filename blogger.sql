@@ -1,22 +1,24 @@
 /*
-Navicat MySQL Data Transfer
+ Navicat Premium Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50645
-Source Host           : localhost:3306
-Source Database       : blogger
+ Source Server         : local
+ Source Server Type    : MySQL
+ Source Server Version : 50641
+ Source Host           : localhost
+ Source Database       : blogger
 
-Target Server Type    : MYSQL
-Target Server Version : 50645
-File Encoding         : 65001
+ Target Server Type    : MySQL
+ Target Server Version : 50641
+ File Encoding         : utf-8
 
-Date: 2020-01-12 21:17:41
+ Date: 02/07/2020 14:46:20 PM
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for tb_article
+--  Table structure for `tb_article`
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_article`;
 CREATE TABLE `tb_article` (
@@ -27,34 +29,21 @@ CREATE TABLE `tb_article` (
   `article_info` varchar(255) DEFAULT NULL,
   `article_count` int(11) DEFAULT NULL,
   `article_from` varchar(255) DEFAULT NULL,
-  `master_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of tb_article
+--  Records of `tb_article`
 -- ----------------------------
-INSERT INTO `tb_article` VALUES ('1', '1', '4324', 'articleContent', null, null, null, '12', null, null);
-INSERT INTO `tb_article` VALUES ('2', '1', '4324', 'articleContent', null, null, null, '12', '2019-12-19 22:31:53', '2019-12-19 22:31:53');
-INSERT INTO `tb_article` VALUES ('3', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 14:05:10', '2019-12-22 14:05:10');
-INSERT INTO `tb_article` VALUES ('4', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18');
-INSERT INTO `tb_article` VALUES ('5', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18');
-INSERT INTO `tb_article` VALUES ('6', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18');
-INSERT INTO `tb_article` VALUES ('7', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18');
-INSERT INTO `tb_article` VALUES ('8', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18');
-INSERT INTO `tb_article` VALUES ('9', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18');
-INSERT INTO `tb_article` VALUES ('10', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18');
-INSERT INTO `tb_article` VALUES ('11', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18');
-INSERT INTO `tb_article` VALUES ('12', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18');
-INSERT INTO `tb_article` VALUES ('13', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18');
-INSERT INTO `tb_article` VALUES ('14', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18');
-INSERT INTO `tb_article` VALUES ('15', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18');
-INSERT INTO `tb_article` VALUES ('16', '2', '我是谁', '请输入内容', null, null, null, '1', '2019-12-23 22:03:09', '2019-12-23 22:03:09');
+BEGIN;
+INSERT INTO `tb_article` VALUES ('1', '1', '4324', 'articleContent', null, null, null, '12', null, null), ('2', '1', '4324', 'articleContent', null, null, null, '12', '2019-12-19 22:31:53', '2019-12-19 22:31:53'), ('3', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 14:05:10', '2019-12-22 14:05:10'), ('4', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18'), ('5', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18'), ('6', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18'), ('7', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18'), ('8', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18'), ('9', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18'), ('10', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18'), ('11', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18'), ('12', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18'), ('13', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18'), ('14', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18'), ('15', '1', 'test', 'undefined', null, null, null, '1', '2019-12-22 15:01:18', '2019-12-22 15:01:18'), ('16', '2', '我是谁', '请输入内容', null, null, null, '1', '2019-12-23 22:03:09', '2019-12-23 22:03:09');
+COMMIT;
 
 -- ----------------------------
--- Table structure for tb_article_type
+--  Table structure for `tb_article_type`
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_article_type`;
 CREATE TABLE `tb_article_type` (
@@ -65,41 +54,17 @@ CREATE TABLE `tb_article_type` (
   `created_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of tb_article_type
+--  Records of `tb_article_type`
 -- ----------------------------
-INSERT INTO `tb_article_type` VALUES ('1', '学习笔记', null, '2', '2019-12-19 22:03:46', '2019-12-19 22:03:46');
-INSERT INTO `tb_article_type` VALUES ('2', '生活剪影', null, '1', '2019-12-19 22:03:43', '2019-12-19 22:03:43');
-INSERT INTO `tb_article_type` VALUES ('3', '福利专区', null, '3', '2019-12-19 22:03:47', '2019-12-19 22:03:47');
-INSERT INTO `tb_article_type` VALUES ('4', '关于站长', null, '5', '2019-12-19 22:52:27', '2019-12-19 22:52:27');
-INSERT INTO `tb_article_type` VALUES ('5', '发表博客', null, '4', '2019-12-19 22:03:49', '2019-12-19 22:03:49');
+BEGIN;
+INSERT INTO `tb_article_type` VALUES ('1', '技术', null, '2', '2020-01-24 17:07:24', '2020-01-24 17:07:24'), ('2', '生活', null, '1', '2020-01-24 17:07:16', '2020-01-24 17:07:16'), ('3', '福利', null, '3', '2020-01-24 17:07:28', '2020-01-24 17:07:28');
+COMMIT;
 
 -- ----------------------------
--- Table structure for tb_master
--- ----------------------------
-DROP TABLE IF EXISTS `tb_master`;
-CREATE TABLE `tb_master` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `login_name` varchar(255) DEFAULT NULL,
-  `master_name` varchar(255) DEFAULT NULL,
-  `master_email` varchar(255) DEFAULT NULL,
-  `master_password` varchar(255) DEFAULT NULL,
-  `master_gender` varchar(11) DEFAULT NULL,
-  `is_admin` int(11) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of tb_master
--- ----------------------------
-INSERT INTO `tb_master` VALUES ('1', 'qzw', null, null, '123456', null, null, null, null);
-
--- ----------------------------
--- Table structure for tb_photo
+--  Table structure for `tb_photo`
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_photo`;
 CREATE TABLE `tb_photo` (
@@ -113,11 +78,7 @@ CREATE TABLE `tb_photo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of tb_photo
--- ----------------------------
-
--- ----------------------------
--- Table structure for tb_replay
+--  Table structure for `tb_replay`
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_replay`;
 CREATE TABLE `tb_replay` (
@@ -134,11 +95,7 @@ CREATE TABLE `tb_replay` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of tb_replay
--- ----------------------------
-
--- ----------------------------
--- Table structure for tb_review
+--  Table structure for `tb_review`
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_review`;
 CREATE TABLE `tb_review` (
@@ -154,11 +111,31 @@ CREATE TABLE `tb_review` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of tb_review
+--  Table structure for `tb_user`
 -- ----------------------------
+DROP TABLE IF EXISTS `tb_user`;
+CREATE TABLE `tb_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `login_name` varchar(255) DEFAULT NULL,
+  `user_name` varchar(255) DEFAULT NULL,
+  `user_email` varchar(255) DEFAULT NULL,
+  `user_password` varchar(255) DEFAULT NULL,
+  `user_gender` varchar(11) DEFAULT NULL,
+  `is_admin` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for tb_word
+--  Records of `tb_user`
+-- ----------------------------
+BEGIN;
+INSERT INTO `tb_user` VALUES ('1', 'qzw', null, null, '123456', null, null, null, null);
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `tb_word`
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_word`;
 CREATE TABLE `tb_word` (
@@ -171,6 +148,4 @@ CREATE TABLE `tb_word` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of tb_word
--- ----------------------------
+SET FOREIGN_KEY_CHECKS = 1;
