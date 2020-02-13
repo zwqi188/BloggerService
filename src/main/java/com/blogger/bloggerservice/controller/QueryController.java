@@ -22,4 +22,5 @@ public class QueryController {
     public String queryMenuList() {
         return JsonUtils.objectToString(queryService.queryMenuList());
     }
+
 }

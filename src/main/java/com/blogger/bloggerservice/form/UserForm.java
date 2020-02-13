@@ -7,8 +7,8 @@ import javax.validation.constraints.NotNull;
  */
 public class UserForm {
 
-    @NotNull(message = "用户id不能为空", groups = {LoginOut.class})
-    private Integer id;
+    @NotNull(message = "用户id不能为空", groups = {LoginOut.class, GetRecommendUser.class})
+    private Integer userId;
 
     @NotNull(message = "登录名不能为空", groups = {Login.class, Register.class})
     private String userName;
@@ -43,6 +43,14 @@ public class UserForm {
         this.varifyCode = varifyCode;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     public interface Login {
     }
 
@@ -50,5 +58,8 @@ public class UserForm {
     }
 
     public interface LoginOut {
+    }
+
+    public interface GetRecommendUser {
     }
 }

@@ -5,11 +5,10 @@ package com.blogger.bloggerservice.bean;
  */
 public class PageInfoBean {
 
-    private Integer pageIndex;
     /**
      * 当前页
      */
-    private Integer currentRow;
+    private Integer currentPage;
 
     /**
      * 页面大小
@@ -20,23 +19,14 @@ public class PageInfoBean {
 
     }
 
-    public PageInfoBean(Integer pageIndex, Integer pageSize) {
-        this.pageIndex = pageIndex;
-        if (pageIndex <= 1) {
-            this.currentRow = 0;
+    public PageInfoBean(Integer currentPage, Integer pageSize) {
+        this.currentPage = currentPage;
+        if (currentPage <= 1) {
+            this.currentPage = 0;
         } else {
-            this.currentRow = (pageIndex - 1) * pageSize;
+            this.currentPage = (currentPage - 1) * pageSize;
         }
         this.pageSize = pageSize;
-    }
-
-
-    public Integer getCurrentRow() {
-        return currentRow;
-    }
-
-    public void setCurrentRow(Integer currentRow) {
-        this.currentRow = currentRow;
     }
 
     public Integer getPageSize() {
@@ -47,11 +37,11 @@ public class PageInfoBean {
         this.pageSize = pageSize;
     }
 
-    public Integer getPageIndex() {
-        return pageIndex;
+    public Integer getCurrentPage() {
+        return currentPage;
     }
 
-    public void setPageIndex(Integer pageIndex) {
-        this.pageIndex = pageIndex;
+    public void setCurrentPage(Integer currentPage) {
+        this.currentPage = currentPage;
     }
 }

@@ -31,4 +31,10 @@ public interface UserService {
      * @return
      */
     ResultVo loginOut(UserForm userForm, HttpServletRequest request) throws RespException;
+
+    /**
+     * 获得推荐作者
+     * @return
+     */
+    ResultVo getRecommendUser(UserForm user);
 }

@@ -10,41 +10,41 @@ import com.blogger.bloggerservice.response.ResultVo;
  */
 public class RespException extends Exception {
 
-    private String respCode;
+    private String code;
 
-    private String respMsg;
+    private String message;
 
     public RespException() {
     }
 
-    public RespException(String respCode, String respMsg) {
-        this.respCode = respCode;
-        this.respMsg = respMsg;
+    public RespException(String code, String message) {
+        this.code = code;
+        this.message = message;
     }
 
     public RespException(ResponseEnums enums) {
-        this.respCode = enums.getCode();
-        this.respMsg = enums.getResponseMsg();
+        this.code = enums.getCode();
+        this.message = enums.getResponseMsg();
     }
 
 
-    public String getRespCode() {
-        return respCode;
+    public String getcode() {
+        return code;
     }
 
-    public void setRespCode(String respCode) {
-        this.respCode = respCode;
+    public void setcode(String code) {
+        this.code = code;
     }
 
-    public String getRespMsg() {
-        return respMsg;
+    public String getmessage() {
+        return message;
     }
 
-    public void setRespMsg(String respMsg) {
-        this.respMsg = respMsg;
+    public void setmessage(String message) {
+        this.message = message;
     }
 
     public ResultVo toResopnse() {
-        return new ResultVo(this.respCode, this.respMsg);
+        return new ResultVo(this.code, this.message);
     }
 }

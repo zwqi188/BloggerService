@@ -3,6 +3,7 @@ package com.blogger.bloggerservice.utils;
 import com.blogger.bloggerservice.constant.Constant;
 import com.blogger.bloggerservice.enums.ResponseEnums;
 import com.blogger.bloggerservice.exception.RespException;
+import org.apache.commons.beanutils.ConvertUtils;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -38,12 +40,19 @@ public class ComUtils {
      */
     public static Color getRandColor(int s, int e) {
         Random random = new Random();
-        if (s > 255) s = 91;
-        if (e > 255) e = 97;
+        if (s > 255) {
+            s = 91;
+        }
+        if (e > 255) {
+            e = 97;
+        }
         int r, g, b;
-        r = s + random.nextInt(e - s);    //随机生成RGB颜色中的r值
-        g = s + random.nextInt(e - s);    //随机生成RGB颜色中的g值
-        b = s + random.nextInt(e - s);    //随机生成RGB颜色中的b值
+        //随机生成RGB颜色中的r值
+        r = s + random.nextInt(e - s);
+        //随机生成RGB颜色中的g值
+        g = s + random.nextInt(e - s);
+        //随机生成RGB颜色中的b值
+        b = s + random.nextInt(e - s);
         return new Color(r, g, b);
     }
 
@@ -103,6 +112,16 @@ public class ComUtils {
         } catch (Exception e) {
             throw new RespException(ResponseEnums.EXP_UTL_REMOVE_SESSION);
         }
+    }
+
+    /**
+     * 将用户关注的信息转换为列表
+     * @param userConcern
+     * @return
+     */
+    public static Integer[] convertConcernList(String userConcern) {
+        String[] split = userConcern.split(",");
+        return (Integer[]) ConvertUtils.convert(split, Integer.class);
     }
 
 }

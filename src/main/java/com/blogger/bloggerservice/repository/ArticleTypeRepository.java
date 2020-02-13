@@ -16,6 +16,6 @@ public interface ArticleTypeRepository extends JpaRepository<ArticleType, Intege
      * 查询文章分类
      * @return
      */
-    @Query(value = "select id,article_type_name 'articleTypeName' from tb_article_type order by sort_order asc", nativeQuery = true)
+    @Query(value = "select id,article_type_name 'name' from tb_article_type order by sort_order asc", nativeQuery = true)
     List<Map<String, Object>> getArticleType();
 }

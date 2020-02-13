@@ -7,35 +7,35 @@ import com.blogger.bloggerservice.enums.ResponseEnums;
  */
 public class ResultVo {
 
-    private String respCode;
+    private String code;
 
-    private String respMsg;
+    private String message;
 
     private Object data;
 
     public ResultVo() {}
 
     public ResultVo(String code, String message) {
-        this.respCode = code;
-        this.respMsg = message;
+        this.code = code;
+        this.message = message;
     }
 
     public ResultVo(String code, String message, Object data) {
-        this.respCode = code;
-        this.respMsg = message;
+        this.code = code;
+        this.message = message;
         this.data = data;
     }
 
     public ResultVo (ResponseEnums enums) {
-        this.respCode = enums.getCode();
-        this.respMsg = enums.getMessage();
+        this.code = enums.getCode();
+        this.message = enums.getMessage();
     }
     public static ResultVo success(){
         return new ResultVo("1000", "成功");
     }
 
-    public static ResultVo success(String respMsg){
-        return new ResultVo("1000", respMsg);
+    public static ResultVo success(String message){
+        return new ResultVo("1000", message);
     }
 
     public static ResultVo success(Object data){
@@ -51,28 +51,28 @@ public class ResultVo {
         return new ResultVo("1001", "失败");
     }
 
-    public static ResultVo fail(String respMsg){
-        return new ResultVo("1001", respMsg);
+    public static ResultVo fail(String message){
+        return new ResultVo("1001", message);
     }
 
-    public static ResultVo fail(StringBuilder respMsg){
-        return new ResultVo("1001", "失败", respMsg);
+    public static ResultVo fail(StringBuilder message){
+        return new ResultVo("1001", "失败", message);
     }
 
-    public String getRespCode() {
-        return respCode;
+    public String getcode() {
+        return code;
     }
 
-    public void setRespCode(String respCode) {
-        this.respCode = respCode;
+    public void setcode(String code) {
+        this.code = code;
     }
 
-    public String getRespMsg() {
-        return respMsg;
+    public String getmessage() {
+        return message;
     }
 
-    public void setRespMsg(String respMsg) {
-        this.respMsg = respMsg;
+    public void setmessage(String message) {
+        this.message = message;
     }
 
     public Object getData() {

@@ -10,63 +10,83 @@ import java.util.Date;
  * @author admin
  */
 @Entity
-@Table(name="tb_article")
+@Table(name = "tb_article")
 public class Article {
 
     /**
      * id
      */
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Integer id;
 
     /**
      * 文章类型编号
      */
-    @Column(name="article_type_id")
+    @Column(name = "article_type_id")
     private Integer articleTypeId;
 
     /**
      * 文章标题
      */
-    @Column(name="article_title")
+    @Column(name = "article_title")
     private String articleTitle;
 
     /**
+     * 文章图片
+     */
+    @Column(name = "article_pic")
+    private String articlePic;
+
+    /**
+     * 文章描述
+     */
+    @Column(name = "article_desc")
+    private String articleDesc;
+    /**
      * 文章内容
      */
-    @Column(name="article_content")
+    @Column(name = "article_content")
     private String articleContent;
 
     /**
      * 文章信息
      */
-    @Column(name="article_info")
+    @Column(name = "article_info")
     private String articleInfo;
 
     /**
      * 点击数量
      */
-    @Column(name="article_count")
-    private Integer articleCount;
+    @Column(name = "article_like")
+    private Integer articleLike;
 
+
+    @Column(name = "article_replay")
+    private Integer articleReplay;
     /**
      * 文章来源
      */
-    @Column(name="article_from")
+    @Column(name = "article_from")
     private String articleFrom;
 
     /**
      * 创作人id
      */
-    @Column(name="user_id")
+    @Column(name = "user_id")
     private Integer userId;
 
-    @Column(name="created_at")
+    /**
+     * 用户名字
+     */
+    @Column(name = "user_name")
+    private String userName;
+
+    @Column(name = "created_at")
     private Date createdAt;
 
-    @Column(name="updated_at")
+    @Column(name = "updated_at")
     private Date updatedAt;
 
     public Integer getId() {
@@ -109,14 +129,6 @@ public class Article {
         this.articleInfo = articleInfo;
     }
 
-    public Integer getArticleCount() {
-        return articleCount;
-    }
-
-    public void setArticleCount(Integer articleCount) {
-        this.articleCount = articleCount;
-    }
-
     public String getArticleFrom() {
         return articleFrom;
     }
@@ -147,5 +159,45 @@ public class Article {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public Integer getArticleReplay() {
+        return articleReplay;
+    }
+
+    public void setArticleReplay(Integer articleReplay) {
+        this.articleReplay = articleReplay;
+    }
+
+    public String getArticleDesc() {
+        return articleDesc;
+    }
+
+    public void setArticleDesc(String articleDesc) {
+        this.articleDesc = articleDesc;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getArticlePic() {
+        return articlePic;
+    }
+
+    public void setArticlePic(String articlePic) {
+        this.articlePic = articlePic;
+    }
+
+    public Integer getArticleLike() {
+        return articleLike;
+    }
+
+    public void setArticleLike(Integer articleLike) {
+        this.articleLike = articleLike;
     }
 }

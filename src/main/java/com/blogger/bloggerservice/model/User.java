@@ -21,6 +21,11 @@ public class User {
     private Integer id;
 
     /**
+     * 用户头像
+     */
+    @Column(name = "avatar_url")
+    private String avatarUrl;
+    /**
      * 登录名称
      */
     @Column(name="login_name")
@@ -50,10 +55,28 @@ public class User {
     private String userEmail;
 
     /**
+     * 用户字数
+     */
+    @Column(name = "user_word_number")
+    private Integer userWordNumber;
+
+    /**
+     * 用户喜爱数
+     */
+    @Column(name = "user_like")
+    private Integer userLike;
+
+    /**
      * 是否管理员
      */
     @Column(name="is_admin")
     private Integer isAdmin;
+
+    /**
+     * 关注用户
+     */
+    @Column(name = "user_concern")
+    private String userConcern;
 
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -135,5 +158,37 @@ public class User {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public Integer getUserWordNumber() {
+        return userWordNumber;
+    }
+
+    public void setUserWordNumber(Integer userWordNumber) {
+        this.userWordNumber = userWordNumber;
+    }
+
+    public Integer getUserLike() {
+        return userLike;
+    }
+
+    public void setUserLike(Integer userLike) {
+        this.userLike = userLike;
+    }
+
+    public String getUserConcern() {
+        return userConcern;
+    }
+
+    public void setUserConcern(String userConcern) {
+        this.userConcern = userConcern;
     }
 }

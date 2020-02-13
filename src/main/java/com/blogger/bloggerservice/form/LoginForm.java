@@ -1,8 +1,5 @@
 package com.blogger.bloggerservice.form;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.validation.constraints.NotNull;
 
 /**

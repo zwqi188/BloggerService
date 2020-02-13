@@ -11,13 +11,18 @@ import com.blogger.bloggerservice.service.UserService;
 import com.blogger.bloggerservice.utils.ComUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * 用户service
+ * @author admin
  */
 @Service
 public class UserServiceImpl implements UserService {
@@ -82,5 +87,24 @@ public class UserServiceImpl implements UserService {
     public ResultVo loginOut(UserForm userForm, HttpServletRequest request) throws RespException {
         ComUtils.cleanSession(request, Param.RAND_CHECK_CODE);
         return ResultVo.success();
+    }
+
+    /**
+     * 获得推荐作者
+     * 1、查询用户的关注信息
+     * 2、将用户关注的人的作为推荐用户
+     * @return
+     */
+    @Override
+    public ResultVo getRecommendUser(UserForm user) {
+        User queryUser = userRepository.findByUserId(user.getUserId());
+        ResultVo response = ResultVo.success();
+        if(queryUser == null) {
+            response.setData(userRepository.findByTop5());
+            return response;
+        }
+        Integer[] concernList = ComUtils.convertConcernList(queryUser.getUserConcern());
+        response.setData(userRepository.findByIdIn(concernList));
+        return response;
     }
 }

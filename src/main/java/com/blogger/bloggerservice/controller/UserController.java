@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author admin
  */
 @Controller
+@Validated
 @RequestMapping(value = "/sys")
 public class UserController {
 
@@ -32,10 +33,10 @@ public class UserController {
      * userPassword       String|M|用户密码
      * varifyCode         String|M|验证码
      * 出参
-     * respCode            String|M|返回码
-     * respMsg             String|M|返回话术
+     * code            String|M|返回码
+     * message             String|M|返回话术
      * data                Object|O|信息
-     *
+     * <p>
      * 示例
      *
      * @return
@@ -55,9 +56,9 @@ public class UserController {
      * userPassword       String|M|用户密码
      * varifyCode         String|M|验证码
      * 出参
-     * respCode            String|M|返回码
-     * respMsg             String|M|返回话术
-     *
+     * code            String|M|返回码
+     * message             String|M|返回话术
+     * <p>
      * 示例
      *
      * @return
@@ -78,9 +79,9 @@ public class UserController {
      * userPassword       String|M|用户密码
      * varifyCode         String|M|验证码
      * 出参
-     * respCode            String|M|返回码
-     * respMsg             String|M|返回话术
-     *
+     * code            String|M|返回码
+     * message             String|M|返回话术
+     * <p>
      * 示例
      *
      * @return
@@ -88,9 +89,28 @@ public class UserController {
     @RequestMapping(value = "/loginOut.json", method = RequestMethod.POST)
     @ResponseBody
     public String loginOut(@RequestBody @Validated(value = UserForm.LoginOut.class) UserForm login,
-                        HttpServletRequest request) throws RespException {
+                           HttpServletRequest request) throws RespException {
         return JsonUtils.objectToString(userService.loginOut(login, request));
     }
 
 
+    /**
+     * 获取博客类型
+     * 接口名 /sys/getRecommendUser.json
+     * 入参
+     * 无
+     * 出参
+     * code            String|M|返回码
+     * message             String|M|返回话术
+     * data                Object|O|信息
+     * <p>
+     * 示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "/getRecommendUser.json", method = RequestMethod.POST)
+    @ResponseBody
+    public String getRecommendUser(UserForm user) {
+        return JsonUtils.objectToString(userService.getRecommendUser(user));
+    }
 }

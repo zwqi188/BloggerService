@@ -24,7 +24,7 @@ public class ArticleType {
      * 文章类型名称
      */
     @Column(name="article_type_name")
-    private String articleTypeName;
+    private String name;
 
     /**
      * 文章标题信息
@@ -50,12 +50,12 @@ public class ArticleType {
         this.id = id;
     }
 
-    public String getArticleTypeName() {
-        return articleTypeName;
+    public String getname() {
+        return name;
     }
 
-    public void setArticleTypeName(String articleTypeName) {
-        this.articleTypeName = articleTypeName;
+    public void setname(String name) {
+        this.name = name;
     }
 
     public String getArticleTitleInfo() {

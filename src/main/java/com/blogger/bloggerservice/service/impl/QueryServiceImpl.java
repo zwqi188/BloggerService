@@ -1,6 +1,7 @@
 package com.blogger.bloggerservice.service.impl;
 
 import com.blogger.bloggerservice.repository.ArticleTypeRepository;
+import com.blogger.bloggerservice.repository.UserRepository;
 import com.blogger.bloggerservice.response.ResultVo;
 import com.blogger.bloggerservice.service.QueryService;
 import org.springframework.beans.factory.annotation.Autowired;

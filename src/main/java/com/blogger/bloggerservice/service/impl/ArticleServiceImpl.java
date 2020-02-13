@@ -58,9 +58,9 @@ public class ArticleServiceImpl implements ArticleService {
     public ResultVo getBlogList(ArticleForm articleForm) {
         PageInfoBean pageInfoBean = new PageInfoBean(articleForm.getPageIndex(), articleForm.getPageSize());
         List<Article> articleList = articleReposity.getArticleList(
-                pageInfoBean.getCurrentRow(), pageInfoBean.getPageSize());
+                pageInfoBean.getCurrentPage(), pageInfoBean.getPageSize());
         Map<String, Object> returnMap = new HashMap<>();
-        returnMap.put(Param.RETURN_DATA, articleList);
+        returnMap.put(Param.BLOG_LIST, articleList);
         returnMap.put(Param.COUNT, articleReposity.getArticleListCount());
         returnMap.put(Param.CURRENT_PAGE, articleForm.getPageIndex());
         ResultVo resultVo = ResultVo.success();
