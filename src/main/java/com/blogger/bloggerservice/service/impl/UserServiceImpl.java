@@ -72,10 +72,6 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public ResultVo login(UserForm userForm, HttpServletRequest request) throws RespException {
-        String random = ComUtils.getSession(request, Param.RAND_CHECK_CODE);
-        if(!userForm.getVarifyCode().equals(random)) {
-            return new ResultVo(ResponseEnums.ERROR_SEV_VARIFY_CODE);
-        }
         ResultVo resultVo = ResultVo.success();
         User user = userRepository.findByLoginNameAndUserPassword(userForm.getUserName(), userForm.getUserPassword());
         if (user == null) {

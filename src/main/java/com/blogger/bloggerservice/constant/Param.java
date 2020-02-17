@@ -9,6 +9,7 @@ public class Param {
     public static final String MOBILE = "mobile";
     public static final String PASSWORD = "password";
     public static final String RAND_CHECK_CODE = "randCheckCode";
+    public static final String LOGIN_CODE = "loginCode";
 
 
     public static final String RETURN_DATA = "returnData";

@@ -21,7 +21,7 @@ public enum ResponseEnums {
 
     ERROR_SEV_VARIFY_CODE(Constant.RESP_CODE_1001, "验证码错误！[BS-3001]"),
     ERROR_SEV_USER_EXIST(Constant.RESP_CODE_1001, "用户信息已存在！[BS-3002]"),
-    ERROR_SEV_USER_NOT_EXIST(Constant.RESP_CODE_1001, "用户信息不存在！[BS-3002]"),
+    ERROR_SEV_USER_NOT_EXIST(Constant.RESP_CODE_1001, "用户名或密码错误！[BS-3002]"),
 
     EXP_FIL_CHECK_PARAM(Constant.RESP_CODE_9501, "参数错误！[BS-4001]");
 

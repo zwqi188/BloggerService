@@ -3,6 +3,7 @@ package com.blogger.bloggerservice.controller;
 import com.blogger.bloggerservice.constant.Constant;
 import com.blogger.bloggerservice.constant.Param;
 import com.blogger.bloggerservice.exception.RespException;
+import com.blogger.bloggerservice.response.ResultVo;
 import com.blogger.bloggerservice.service.UtilService;
 import com.blogger.bloggerservice.utils.ComUtils;
 import com.blogger.bloggerservice.utils.JsonUtils;
@@ -72,6 +73,21 @@ public class UtilController {
         ImageIO.write(image, "JPEG", response.getOutputStream());
     }
 
+
+    /**
+     * 登录请求
+     *
+     * @param request
+     * @throws IOException
+     */
+    @RequestMapping(value = "/generateLoginRequest.json", method = RequestMethod.POST)
+    public String generateLoginRequest(HttpServletRequest request)
+            throws RespException {
+        ComUtils.setSession(request, Param.LOGIN_CODE, "true");
+        ResultVo response = ResultVo.success();
+        response.setData(false);
+        return JsonUtils.objectToString(response);
+    }
     /**
      * 生成图片验证码
      * @param varifyCode

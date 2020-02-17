@@ -19,7 +19,7 @@ public class UserForm {
     @NotNull(message = "登录密码不能为空", groups = {Login.class, Register.class})
     private String userPassword;
 
-    @NotNull(message = "验证码不能为空", groups = {Login.class, Register.class})
+    @NotNull(message = "验证码不能为空", groups = {Register.class})
     private String varifyCode;
 
     public String getUserName() {
