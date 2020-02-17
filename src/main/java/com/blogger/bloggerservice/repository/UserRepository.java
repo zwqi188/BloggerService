@@ -4,6 +4,7 @@ import com.blogger.bloggerservice.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -47,6 +48,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
      * @param
      * @return
      */
-    @Query(value = "select * from tb_user limit 5", nativeQuery = true)
-    List<User> findByTop5();
+    @Query(value = "select * from tb_user where id not in (?) order by created_at desc limit ?,? ", nativeQuery = true)
+    List<User> findByTopAndNoIn(String concenList, Integer start, Integer end);
 }

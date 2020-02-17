@@ -112,7 +112,9 @@ public class UtilServiceImpl implements UtilService {
             trans.rotate((30) * 3.14 / 266, 19 * i + 8, 7);
             /*缩放文字*/
             float scaleSize = random.nextFloat() + 0.8f;
-            if (scaleSize > 1f) scaleSize = 1f;
+            if (scaleSize > 1f) {
+                scaleSize = 1f;
+            }
             trans.scale(scaleSize, scaleSize);
             g2d_word.setTransform(trans);
             g.drawString(ctmp, 19 * i + 19, 19);

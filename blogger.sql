@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50645
 File Encoding         : 65001
 
-Date: 2020-02-13 23:49:58
+Date: 2020-02-17 22:40:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -159,18 +159,26 @@ CREATE TABLE `tb_user` (
   `created_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
-INSERT INTO `tb_user` VALUES ('1', 'https://cdn2.jianshu.io/assets/default_avatar/2-9636b13945b9ccf345bc98d0d81074eb.jpg', 'qzw', '张三', '16465465@qq.com', '123456', '男', '344', '2,3,4,6', '43', '1', '2020-02-13 20:31:47', '2020-02-13 20:31:47');
+INSERT INTO `tb_user` VALUES ('1', 'https://cdn2.jianshu.io/assets/default_avatar/2-9636b13945b9ccf345bc98d0d81074eb.jpg', 'qzw', '张三', '16465465@qq.com', '123456', '男', '344', '1,2,3,4,5,6', '43', '1', '2020-02-14 18:30:35', '2020-02-14 18:30:35');
 INSERT INTO `tb_user` VALUES ('2', 'https://upload.jianshu.io/users/upload_avatars/9988193/fc26c109-1ae6-4327-a298-2def343e9cd8.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp', 'cxa', 'nihao', 'weqe4234@qwre.com', '4234324', '女', '3', '3', '54', '0', '2020-02-13 20:31:50', '2020-02-13 20:31:50');
 INSERT INTO `tb_user` VALUES ('3', 'https://upload.jianshu.io/users/upload_avatars/3343569/6940ee65-036f-4b7a-9935-5915d9b67d14.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp', '和规范化', '4656', '645654', '64654', '男', '4', null, '54', '0', '2020-02-13 18:49:23', '2020-02-13 18:49:23');
 INSERT INTO `tb_user` VALUES ('4', 'https://upload.jianshu.io/users/upload_avatars/3950651/acfaa0ce-42fe-424a-b7c8-9a0136fb96ec.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp', '756756胡', '87686', '765765', '565', '男', '5', '4,6', '4', '0', '2020-02-13 20:31:54', '2020-02-13 20:31:54');
 INSERT INTO `tb_user` VALUES ('5', 'https://upload.jianshu.io/users/upload_avatars/3950651/acfaa0ce-42fe-424a-b7c8-9a0136fb96ec.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp', '特瑞特', '6456', '6456', '64', '女', '453', '5,9', '3', '0', '2020-02-13 20:31:57', '2020-02-13 20:31:57');
 INSERT INTO `tb_user` VALUES ('6', 'https://upload.jianshu.io/users/upload_avatars/3950651/acfaa0ce-42fe-424a-b7c8-9a0136fb96ec.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96/format/webp', '地', '767', '756', '75', '女', '54', '3,9', '45', '0', '2020-02-13 20:32:15', '2020-02-13 20:32:15');
 INSERT INTO `tb_user` VALUES ('7', null, '5345', '太热', 'te\'r', '65', '女', '65', '4', '65', '0', '2020-02-13 20:32:10', '2020-02-13 20:32:10');
+INSERT INTO `tb_user` VALUES ('8', null, '', '', null, 'd41d8cd98f00b204e9800998ecf8427e', null, null, null, null, null, '2020-02-17 20:38:04', null);
+INSERT INTO `tb_user` VALUES ('9', null, '0980', '0980', null, 'd41d8cd98f00b204e9800998ecf8427e', null, null, null, null, null, '2020-02-17 20:47:33', null);
+INSERT INTO `tb_user` VALUES ('10', null, '6456', '6456', null, 'd41d8cd98f00b204e9800998ecf8427e', null, null, null, null, null, '2020-02-17 20:47:48', null);
+INSERT INTO `tb_user` VALUES ('11', null, '645', '645', null, 'fc490ca45c00b1249bbe3554a4fdf6fb', null, null, null, null, null, '2020-02-17 21:01:48', null);
+INSERT INTO `tb_user` VALUES ('12', null, '456475', '456475', null, '2823f4797102ce1a1aec05359cc16dd9', null, null, null, null, '0', '2020-02-17 21:03:33', null);
+INSERT INTO `tb_user` VALUES ('13', null, '234', '234', null, 'a684eceee76fc522773286a895bc8436', null, null, null, null, '0', '2020-02-17 21:04:52', null);
+INSERT INTO `tb_user` VALUES ('14', null, '6546ty', '6546ty', null, '38de3f7d221a2910710874b0b220cb26', null, null, null, null, '0', '2020-02-17 21:05:28', null);
+INSERT INTO `tb_user` VALUES ('15', null, '234765', '234765', null, 'a684eceee76fc522773286a895bc8436', null, null, null, null, '0', '2020-02-17 21:05:37', null);
 
 -- ----------------------------
 -- Table structure for tb_word

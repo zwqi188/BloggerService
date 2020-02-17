@@ -10,6 +10,9 @@ public class UserForm {
     @NotNull(message = "用户id不能为空", groups = {LoginOut.class, GetRecommendUser.class})
     private Integer userId;
 
+    @NotNull(message = "推荐用户索引不能为空", groups = {GetRecommendUser.class})
+    private Integer index;
+
     @NotNull(message = "登录名不能为空", groups = {Login.class, Register.class})
     private String userName;
 
@@ -49,6 +52,14 @@ public class UserForm {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public Integer getIndex() {
+        return index;
+    }
+
+    public void setIndex(Integer index) {
+        this.index = index;
     }
 
     public interface Login {

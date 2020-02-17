@@ -20,4 +20,8 @@ public class Constant {
     public static final Integer varifyCodeWidth = 100;
     public static final Integer varifyCodeHeight = 28;
     public static final Integer SESSION_TIME = 60 * 60;
+    /**
+     * 默认推荐用户数量
+     */
+    public static final Integer RECOMMEND_USER_NUMBER = 5;
 }

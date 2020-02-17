@@ -1,5 +1,7 @@
 package com.blogger.bloggerservice.service.impl;
 
+import com.blogger.bloggerservice.bean.RecommendUserBean;
+import com.blogger.bloggerservice.constant.Constant;
 import com.blogger.bloggerservice.constant.Param;
 import com.blogger.bloggerservice.enums.ResponseEnums;
 import com.blogger.bloggerservice.exception.RespException;
@@ -9,16 +11,17 @@ import com.blogger.bloggerservice.repository.UserRepository;
 import com.blogger.bloggerservice.response.ResultVo;
 import com.blogger.bloggerservice.service.UserService;
 import com.blogger.bloggerservice.utils.ComUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * 用户service
@@ -38,8 +41,8 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public ResultVo register(UserForm userForm, HttpServletRequest request) throws RespException {
-        String random = ComUtils.getSession(request, Param.RAND_CHECK_CODE);
-        if(!userForm.getVarifyCode().equals(random)) {
+        String checkCode = ComUtils.getSession(request, Param.RAND_CHECK_CODE);
+        if(!userForm.getVarifyCode().equals(checkCode)) {
             return new ResultVo(ResponseEnums.ERROR_SEV_VARIFY_CODE);
         }
         User user = null;
@@ -52,6 +55,7 @@ public class UserServiceImpl implements UserService {
         user.setUserName(userForm.getUserName());
         user.setLoginName(userForm.getUserName());
         user.setUserPassword(userForm.getUserPassword());
+        user.setIsAdmin(0);
         user.setCreatedAt(new Date());
         User saveUser = userRepository.save(user);
         resultVo.setData(saveUser.getId());
@@ -100,11 +104,50 @@ public class UserServiceImpl implements UserService {
         User queryUser = userRepository.findByUserId(user.getUserId());
         ResultVo response = ResultVo.success();
         if(queryUser == null) {
-            response.setData(userRepository.findByTop5());
-            return response;
+            return new ResultVo(ResponseEnums.ERROR_SEV_USER_NOT_EXIST);
         }
-        Integer[] concernList = ComUtils.convertConcernList(queryUser.getUserConcern());
-        response.setData(userRepository.findByIdIn(concernList));
+        List<RecommendUserBean> recommendUserBeanList = new ArrayList<>();
+        List<User> responseUser = new ArrayList<>();
+        //可以拆分的页数
+        Integer page = 0;
+        //最后剩余的条数
+        Integer last = 0;
+        if(!StringUtils.isEmpty(queryUser.getUserConcern())) {
+            Integer[] concernList = ComUtils.convertConcernList(queryUser.getUserConcern());
+            Integer[] arrayCopy = null;
+            page = concernList.length / Constant.RECOMMEND_USER_NUMBER;
+            last = concernList.length % Constant.RECOMMEND_USER_NUMBER;
+            // 索引小于页数或者同时满足索引等于页数并且余下的大于0
+            Boolean needCopy = (user.getIndex() - 1) <= page
+                    || (page.equals(user.getIndex() -1) && last > 0);
+            if (needCopy) {
+                Integer from = user.getIndex() == 1 ? 0: (user.getIndex() - 1 ) * Constant.RECOMMEND_USER_NUMBER - 1;
+                arrayCopy = Arrays.copyOfRange(concernList,
+                        from, Constant.RECOMMEND_USER_NUMBER);
+            }
+            if (arrayCopy != null) {
+                responseUser = userRepository.findByIdIn(arrayCopy);
+                for (User users: responseUser) {
+                    RecommendUserBean recommendUserBean = new RecommendUserBean();
+                    BeanUtils.copyProperties(users, recommendUserBean);
+                    recommendUserBean.setHasConcern(true);
+                    recommendUserBeanList.add(recommendUserBean);
+                }
+            }
+        }
+        if (responseUser.size() < Constant.RECOMMEND_USER_NUMBER) {
+            Integer start = 0;
+            Integer end = Constant.RECOMMEND_USER_NUMBER - responseUser.size();
+            responseUser = userRepository.findByTopAndNoIn(
+                    queryUser.getUserConcern(), start, end);
+            for (User users: responseUser) {
+                RecommendUserBean recommendUserBean = new RecommendUserBean();
+                BeanUtils.copyProperties(users, recommendUserBean);
+                recommendUserBean.setHasConcern(false);
+                recommendUserBeanList.add(recommendUserBean);
+            }
+        }
+        response.setData(recommendUserBeanList);
         return response;
     }
 }
