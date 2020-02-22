@@ -51,6 +51,11 @@ public class Article {
     private String articleContent;
 
     /**
+     * 文章字数
+     */
+    @Column(name = "article_count")
+    private Integer articleCount;
+    /**
      * 文章信息
      */
     @Column(name = "article_info")
@@ -83,9 +88,14 @@ public class Article {
     @Column(name = "user_name")
     private String userName;
 
+
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "created_at")
     private Date createdAt;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @Column(name = "updated_at")
     private Date updatedAt;
 
@@ -199,5 +209,13 @@ public class Article {
 
     public void setArticleLike(Integer articleLike) {
         this.articleLike = articleLike;
+    }
+
+    public Integer getArticleCount() {
+        return articleCount;
+    }
+
+    public void setArticleCount(Integer articleCount) {
+        this.articleCount = articleCount;
     }
 }

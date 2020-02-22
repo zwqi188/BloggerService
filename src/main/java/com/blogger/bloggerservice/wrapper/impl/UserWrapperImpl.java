@@ -24,7 +24,7 @@ public class UserWrapperImpl implements UserWrapper {
     public User getUserInfo(String loginName, String userPassword) throws RespException {
         User user = userRepository.findByLoginNameAndUserPassword(loginName, userPassword);
         if (user == null) {
-            throw new RespException(ResponseEnums.ERROR_SEV_USER_NOT_EXIST);
+            throw new RespException(ResponseEnums.ERROR_SEV_USER_LOGIN);
         }
         return user;
     }
@@ -33,7 +33,7 @@ public class UserWrapperImpl implements UserWrapper {
     public User getUserInfo(String loginName) throws RespException {
         User user = userRepository.findByLoginName(loginName);
         if (user == null) {
-            throw new RespException(ResponseEnums.ERROR_SEV_USER_NOT_EXIST);
+            throw new RespException(ResponseEnums.ERROR_SEV_USER_LOGIN);
         }
         return user;
     }
@@ -42,7 +42,7 @@ public class UserWrapperImpl implements UserWrapper {
     public User getUserInfo(Integer userId) throws RespException {
         Optional<User> user = userRepository.findById(userId);
         if (user == null) {
-            throw new RespException(ResponseEnums.ERROR_SEV_USER_NOT_EXIST);
+            throw new RespException(ResponseEnums.ERROR_SEV_USER_LOGIN);
         }
         return user.get();
     }

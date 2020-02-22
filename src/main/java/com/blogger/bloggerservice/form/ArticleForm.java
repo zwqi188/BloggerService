@@ -1,5 +1,7 @@
 package com.blogger.bloggerservice.form;
 
+import org.springframework.util.StringUtils;
+
 import javax.validation.constraints.NotNull;
 
 /**
@@ -15,6 +17,15 @@ public class ArticleForm {
 
     @NotNull(message = "博客内容不能为空", groups = {UploadArticle.class})
     private String articleContent;
+
+    @NotNull(message = "博客查询编号不能为空", groups = {AriticleDetail.class})
+    private Integer articleId;
+
+    @NotNull(message = "文章字数不能为空", groups = {UploadArticle.class})
+    private Integer articleCount;
+
+    @NotNull(message = "文章预览信息不能为空", groups = {UploadArticle.class})
+    private String articleInfo;
 
     private Integer userId;
 
@@ -77,9 +88,36 @@ public class ArticleForm {
         this.pageIndex = pageIndex;
     }
 
+    public Integer getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
+    }
+
+    public Integer getArticleCount() {
+        return articleCount;
+    }
+
+    public void setArticleCount(Integer articleCount) {
+        this.articleCount = articleCount;
+    }
+
+    public String getArticleInfo() {
+        return articleInfo;
+    }
+
+    public void setArticleInfo(String articleInfo) {
+        this.articleInfo = articleInfo;
+    }
+
     public interface UploadArticle {
     }
 
     public interface BlogList {
+    }
+
+    public interface AriticleDetail {
     }
 }

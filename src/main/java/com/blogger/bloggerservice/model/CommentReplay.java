@@ -7,11 +7,11 @@ import java.util.Date;
 
 /**
  * @author admin
- * 回复表
+ * 评论回复表
  */
 @Entity
-@Table(name="tb_replay")
-public class Replay {
+@Table(name="tb_comment_replay")
+public class CommentReplay {
 
     /**
      * id

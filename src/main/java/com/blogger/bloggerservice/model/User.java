@@ -54,6 +54,9 @@ public class User {
     @Column(name="user_email")
     private String userEmail;
 
+
+    @Column(name="user_mobile")
+    private String userMobile;
     /**
      * 用户字数
      */
@@ -190,5 +193,13 @@ public class User {
 
     public void setUserConcern(String userConcern) {
         this.userConcern = userConcern;
+    }
+
+    public String getUserMobile() {
+        return userMobile;
+    }
+
+    public void setUserMobile(String userMobile) {
+        this.userMobile = userMobile;
     }
 }

@@ -7,11 +7,11 @@ import java.util.Date;
 
 /**
  * @author admin
- * 回复表
+ * 评论表
  */
 @Entity
-@Table(name="tb_review")
-public class Review {
+@Table(name="tb_comment")
+public class Comment {
 
     /**
      * id
@@ -36,14 +36,14 @@ public class Review {
     /**
      * 有回复
      */
-    @Column(name="has_replay")
-    private Integer hasReplay;
+    @Column(name="have_replay")
+    private Integer haveReplay;
 
     /**
      * 评论内容
      */
     @Column(name="review_content")
-    private Integer reviewContent;
+    private String reviewContent;
 
     /**
      * 评论状态
@@ -86,19 +86,11 @@ public class Review {
         this.masterId = masterId;
     }
 
-    public Integer getHasReplay() {
-        return hasReplay;
-    }
-
-    public void setHasReplay(Integer hasReplay) {
-        this.hasReplay = hasReplay;
-    }
-
-    public Integer getReviewContent() {
+    public String getReviewContent() {
         return reviewContent;
     }
 
-    public void setReviewContent(Integer reviewContent) {
+    public void setReviewContent(String reviewContent) {
         this.reviewContent = reviewContent;
     }
 
@@ -124,5 +116,13 @@ public class Review {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Integer getHaveReplay() {
+        return haveReplay;
+    }
+
+    public void setHaveReplay(Integer haveReplay) {
+        this.haveReplay = haveReplay;
     }
 }

@@ -16,4 +16,6 @@ public class Param {
     public static final String COUNT = "count";
     public static final String CURRENT_PAGE = "currentPage";
     public static final String BLOG_LIST = "blogList";
+    public static final String ARTICLE_DETAIL = "articleDetail";
+    public static final String USER = "user";
 }

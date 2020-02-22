@@ -143,4 +143,42 @@ public class ArticleController {
         return JsonUtils.objectToString(articleService.getArticleType());
     }
 
+    /**
+     * 获取博客类型
+     * 接口名 /sys/getArticleDetail.json
+     * 入参uploadArticle
+     * articleId        String|M|文章编号
+     * 出参
+     * code            String|M|返回码
+     * message             String|M|返回话术
+     * data                Object|O|信息
+     *
+     * 示例
+     *{
+     * 	"code": "1000",
+     * 	"message": "成功",
+     * 	"data": {
+     * 		"id": 1,
+     * 		"articleTypeId": 1,
+     * 		"articleTitle": "武汉封城第六天:一夜之间的暴发",
+     * 		"articlePic": "https://timgsa.baidb9999_10000&sec=158159099061DJPEG%3Fw%3D900%26h%3D1350",
+     * 		"articleContent": "<div class=\"_16zCst\">阅读",
+     * 		"articleInfo": "恶趣味请问,嗨，我是十欲动...",
+     * 		"articleLike": 2,
+     * 		"articleReplay": 34,
+     * 		"articleFrom": "32",
+     * 		"userId": 12,
+     * 		"userName": "张三",
+     * 		"createdAt": "Feb 13, 2020 4:10:41 PM",
+     * 		"updatedAt": "Feb 13, 2020 4:10:41 PM"
+     *        }
+     * }
+     *
+     * @return
+     */
+    @RequestMapping(value = "/getArticleDetail.json", method = RequestMethod.POST)
+    @ResponseBody
+    public String getArticleDetail(@Validated(value = ArticleForm.AriticleDetail.class) ArticleForm articleForm) {
+        return JsonUtils.objectToString(articleService.getAriticleDetail(articleForm));
+    }
 }

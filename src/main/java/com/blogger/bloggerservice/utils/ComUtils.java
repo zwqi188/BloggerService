@@ -8,6 +8,7 @@ import org.apache.commons.beanutils.ConvertUtils;
 import org.springframework.util.StringUtils;
 
 import javax.imageio.ImageIO;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.awt.*;
@@ -122,8 +123,64 @@ public class ComUtils {
      * @return
      */
     public static Integer[] convertConcernList(String userConcern) {
+        if (StringUtils.isEmpty(userConcern)) {
+            return new Integer[0];
+        }
         String[] split = userConcern.split(",");
         return (Integer[]) ConvertUtils.convert(split, Integer.class);
     }
 
+    /**
+     * 生成关注数据
+     * @param array
+     * @param userId
+     * @return
+     */
+    public static Integer[] follow(Integer array[], int userId) {
+        Boolean exist = false;
+        Integer[] arrNew = new Integer[array.length + 1];
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != userId) {
+                arrNew[i] = array[i];
+            } else {
+                exist = true;
+            }
+        }
+        if (!exist) {
+            arrNew[array.length] = userId;
+        }
+        return arrNew;
+    }
+
+    /**
+     * 生成取消关注数据
+     * @param array
+     * @param userId
+     * @return
+     */
+    public static Integer[] unfollow(Integer array[], int userId) {
+        Integer[] arrNew = new Integer[array.length - 1];
+        int j = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != userId) {
+                arrNew[j] = array[i];
+                j++;
+            }
+        }
+        return arrNew;
+    }
+
+
+    /**
+     * 转换为关注字符串
+     * @param array
+     * @return
+     */
+    public static String convertFollowList(Integer[] array) {
+        String builder = "";
+        for (int i = 0; i < array.length; i++) {
+            builder = builder + array[i] + ",";
+        }
+        return builder.substring(0, builder.length() - 1);
+    }
 }

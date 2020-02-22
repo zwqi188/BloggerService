@@ -37,4 +37,23 @@ public interface UserService {
      * @return
      */
     ResultVo getRecommendUser(UserForm user);
+
+    /**
+     * 查询单个用户
+     * @return
+     */
+    ResultVo queryUser(UserForm user);
+
+    /**
+     * 保存单个用户
+     * @return
+     */
+    ResultVo saveUser(UserForm user);
+
+
+    /**
+     * 更新用户密码
+     * @return
+     */
+    ResultVo updatePassword(UserForm form);
 }

@@ -37,7 +37,7 @@ public class Word {
      * 留言人
      */
     @Column(name="master_id")
-    private String masterId;
+    private Integer masterId;
 
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -74,11 +74,11 @@ public class Word {
         this.wordContent = wordContent;
     }
 
-    public String getMasterId() {
+    public Integer getMasterId() {
         return masterId;
     }
 
-    public void setMasterId(String masterId) {
+    public void setMasterId(Integer masterId) {
         this.masterId = masterId;
     }
 

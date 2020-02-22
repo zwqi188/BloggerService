@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
         ResultVo resultVo = ResultVo.success();
         User user = userRepository.findByLoginNameAndUserPassword(userForm.getUserName(), userForm.getUserPassword());
         if (user == null) {
-            return new ResultVo(ResponseEnums.ERROR_SEV_USER_NOT_EXIST);
+            return new ResultVo(ResponseEnums.ERROR_SEV_USER_LOGIN);
         }
         resultVo.setData(user.getId());
         //清除用户验证码session数据
@@ -98,10 +98,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public ResultVo getRecommendUser(UserForm user) {
         User queryUser = userRepository.findByUserId(user.getUserId());
-        ResultVo response = ResultVo.success();
         if(queryUser == null) {
             return new ResultVo(ResponseEnums.ERROR_SEV_USER_NOT_EXIST);
         }
+        ResultVo response = ResultVo.success();
         List<RecommendUserBean> recommendUserBeanList = new ArrayList<>();
         List<User> responseUser = new ArrayList<>();
         //可以拆分的页数
@@ -145,5 +145,69 @@ public class UserServiceImpl implements UserService {
         }
         response.setData(recommendUserBeanList);
         return response;
+    }
+
+    @Override
+    public ResultVo queryUser(UserForm user) {
+        User queryUser = userRepository.findByUserId(user.getUserId());
+        if(queryUser == null) {
+            return new ResultVo(ResponseEnums.ERROR_SEV_USER_NOT_EXIST);
+        }
+        ResultVo response = ResultVo.success();
+        response.setData(queryUser);
+        return response;
+    }
+
+    /**
+     * 保存用户
+     * @param user
+     * @return
+     */
+    @Transactional
+    @Override
+    public ResultVo saveUser(UserForm user) {
+        User queryUser = userRepository.findByUserId(user.getUserId());
+        if(queryUser == null) {
+            return new ResultVo(ResponseEnums.ERROR_SEV_USER_NOT_EXIST);
+        }
+        if (!StringUtils.isEmpty(user.getAvatarUrl())) {
+            queryUser.setAvatarUrl(user.getAvatarUrl());
+        }
+        if (!StringUtils.isEmpty(user.getLoginName())) {
+            queryUser.setLoginName(user.getLoginName());
+        }
+        if (!StringUtils.isEmpty(user.getUserGender())) {
+            queryUser.setUserGender(user.getUserGender());
+        }
+        if (!StringUtils.isEmpty(user.getUserMobile())) {
+            queryUser.setUserMobile(user.getUserMobile());
+        }
+        if (!StringUtils.isEmpty(user.getUserEmail())) {
+            queryUser.setUserEmail(user.getUserEmail());
+        }
+        try {
+            userRepository.save(queryUser);
+        } catch (Exception ex) {
+            return new ResultVo(ResponseEnums.ERROR_SAVE_TO_DATEBASE);
+        }
+        return ResultVo.success();
+    }
+
+    @Override
+    public ResultVo updatePassword(UserForm form) {
+        User queryUser = userRepository.findByUserId(form.getUserId());
+        if(queryUser == null) {
+            return new ResultVo(ResponseEnums.ERROR_SEV_USER_NOT_EXIST);
+        }
+        if (!queryUser.getUserPassword().equals(form.getOrignPassword())) {
+            return new ResultVo(ResponseEnums.ERROR_SEV_USER_PASSWORD);
+        }
+        queryUser.setUserPassword(form.getUserPassword());
+        try {
+            userRepository.save(queryUser);
+        } catch (Exception ex) {
+            return new ResultVo(ResponseEnums.ERROR_SAVE_TO_DATEBASE);
+        }
+        return ResultVo.success();
     }
 }

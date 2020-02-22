@@ -198,4 +198,91 @@ public class UserController {
     public String getRecommendUser(@Validated(value = UserForm.GetRecommendUser.class)UserForm user) {
         return JsonUtils.objectToString(userService.getRecommendUser(user));
     }
+
+
+    /**
+     * 获取博客类型
+     * 接口名 /sys/queryUser.json
+     * 入参
+     * userId           Integer|M|用户名
+     * 出参
+     * code            String|M|返回码
+     * message             String|M|返回话术
+     * data                Object|O|信息
+     * <p>
+     * 示例
+     *{
+     * 	"code": "1000",
+     * 	"message": "成功",
+     * 	"data": {
+     * 		"id": 1,
+     * 		"avatarUrl": "https://cdn2.jianshu.io/assets/default_avatar/2-9636b13945b9ccf345bc98d0d81074eb.jpg",
+     * 		"loginName": "qzw",
+     * 		"userName": "张三",
+     * 		"userPassword": "202cb962ac59075b964b07152d234b70",
+     * 		"userGender": "男",
+     * 		"userEmail": "16465465@qq.com",
+     * 		"userWordNumber": 344,
+     * 		"userLike": 43,
+     * 		"isAdmin": 1,
+     * 		"userConcern": "1,4,9",
+     * 		"createdAt": "Feb 20, 2020 2:59:59 PM",
+     * 		"updatedAt": "Feb 20, 2020 2:59:59 PM"
+     *        }
+     * }
+     * @return
+     */
+    @RequestMapping(value = "/queryUser.json", method = RequestMethod.POST)
+    @ResponseBody
+    public String queryUser(@Validated(value = UserForm.Query.class)UserForm user) {
+        return JsonUtils.objectToString(userService.queryUser(user));
+    }
+
+
+    /**
+     * 获取博客类型
+     * 接口名 /sys/updateUser.json
+     * 入参
+     * userId           Integer|M|用户名
+     * avatarUrl        String|O|头像
+     * loginName        String|O|登录名
+     * userGender        String|O|性别
+     * userMobile        String|O|手机号
+     * userEmail        String|O|邮箱
+     * 出参
+     * code            String|M|返回码
+     * message             String|M|返回话术
+     * data                Object|O|信息
+     * <p>
+     * 示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "/updateUser.json", method = RequestMethod.POST)
+    @ResponseBody
+    public String updateUser(@Validated(value = UserForm.Query.class)UserForm user) {
+        return JsonUtils.objectToString(userService.saveUser(user));
+    }
+
+    /**
+     * 获取博客类型
+     * 接口名 /sys/updatePassword.json
+     * 入参
+     * userId           Integer|M|用户名
+     * orignPassword        String|M|原密码
+     * userPassword         String|M|密码
+     * 出参
+     * code            String|M|返回码
+     * message             String|M|返回话术
+     * data                Object|O|信息
+     * <p>
+     * 示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "/updatePassword.json", method = RequestMethod.POST)
+    @ResponseBody
+    public String updatePassword(@Validated(value = UserForm.UpdatePassword.class)UserForm form) {
+        return JsonUtils.objectToString(userService.updatePassword(form));
+    }
 }
