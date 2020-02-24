@@ -3,7 +3,7 @@ package com.blogger.bloggerservice.controller;
 import com.blogger.bloggerservice.constant.Constant;
 import com.blogger.bloggerservice.constant.Param;
 import com.blogger.bloggerservice.exception.RespException;
-import com.blogger.bloggerservice.response.ResultVo;
+import com.blogger.bloggerservice.form.ArticleForm;
 import com.blogger.bloggerservice.service.UtilService;
 import com.blogger.bloggerservice.utils.ComUtils;
 import com.blogger.bloggerservice.utils.JsonUtils;
@@ -22,7 +22,8 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.io.*;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -74,26 +75,65 @@ public class UtilController {
     }
 
 
-    /**
-     * 登录请求
-     *
-     * @param request
-     * @throws IOException
-     */
-    @RequestMapping(value = "/generateLoginRequest.json", method = RequestMethod.POST)
-    public String generateLoginRequest(HttpServletRequest request)
-            throws RespException {
-        ComUtils.setSession(request, Param.LOGIN_CODE, "true");
-        ResultVo response = ResultVo.success();
-        response.setData(false);
-        return JsonUtils.objectToString(response);
+
+    @RequestMapping(value = "/packageFile.json", method = RequestMethod.POST)
+    public void downloadZips(HttpServletRequest request, HttpServletResponse response,
+                             @Validated(value = ArticleForm.Package.class) ArticleForm form)
+            throws Exception {
+        Map<String, String> map = utilService.packageFile(form);
+        //相对路径
+        String packagePath = map.get(Param.PACKAGE_PATH);
+        //文件名
+        String fileNames = map.get(Param.FILE_NAME);
+        String detailPath = packagePath + fileNames;
+        File file = new File(packagePath + fileNames);
+        request.setCharacterEncoding("UTF-8");
+        long fileLength = file.length();
+        response.setContentType("application/zip");
+        response.setHeader("Content-disposition",
+                "attachment; filename=" + new String(detailPath.getBytes("utf-8"), "ISO8859-1"));
+        response.setHeader("Content-Length", String.valueOf(fileLength));
+
+
+        BufferedInputStream bis = new BufferedInputStream(new FileInputStream(detailPath));
+        BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
+        byte[] buff = new byte[2048];
+        int bytesRead;
+        while (-1 != (bytesRead = bis.read(buff, 0, buff.length))) {
+            bos.write(buff, 0, bytesRead);
+        }
+        bis.close();
+        bos.close();
+
+//        FileInputStream fis = new FileInputStream(file);
+//        BufferedInputStream buff = new BufferedInputStream(fis);
+//        // 相当于我们的缓存
+//        byte[] b = new byte[1024];
+//        // 该值用于计算当前实际下载了多少字节
+//        long k = 0;
+//        // 从response对象中得到输出流,准备下载
+//        OutputStream myout = response.getOutputStream();
+//        // 开始循环下载
+//        while (k < file.length()) {
+//            int j = buff.read(b, 0, 1024);
+//            k += j;
+//            myout.write(b, 0, j);
+//        }
+//        // 刷新此输出流并强制将所有缓冲的输出字节被写出,关闭流
+//        myout.flush();
+//        myout.close();
+//        buff.close();
+//        fis.close();//删除生成的压缩包文件
+//        file.delete();
     }
+
     /**
      * 生成图片验证码
+     *
      * @param varifyCode
      * @return
      */
-    private BufferedImage generateVarifyCode(HttpServletRequest request,String varifyCode) throws RespException {
+    private BufferedImage generateVarifyCode(HttpServletRequest request, String varifyCode) throws RespException {
         //创建BufferedImage对象,其作用相当于一图片
         BufferedImage image = new BufferedImage(Constant.varifyCodeWidth,
                 Constant.varifyCodeHeight, BufferedImage.TYPE_INT_RGB);

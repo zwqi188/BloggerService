@@ -15,4 +15,13 @@ public interface ArticleReposityCustom {
      * @return
      */
     List<Map<String, Object>> findArticleList(Integer pageIndex, Integer pageSize);
+
+    /**
+     * 通过关注列表获取文章
+     * @param currentPage
+     * @param pageSize
+     * @param userConcern
+     * @return
+     */
+    List<Map<String, Object>> findConcernArticleList(Integer currentPage, Integer pageSize, String userConcern);
 }

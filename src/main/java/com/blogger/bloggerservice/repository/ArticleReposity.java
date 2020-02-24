@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 /**
@@ -44,4 +45,15 @@ public interface ArticleReposity extends JpaRepository<Article, Integer> {
     @Modifying
     @Query("update Article a set a.articleLike = a.articleLike + 1 where a.id = ?1")
     void thumbsUpById(Integer articleId);
+
+    @Query(value = "select * from tb_article where user_id = ?", nativeQuery = true)
+    List<Article> getByUserId(Integer userId);
+
+    /**
+     * 查询关注之人的文章数量
+     * @param userConcern
+     * @return
+     */
+    @Query(value = "select count(*) from tb_article where user_id in (?)", nativeQuery = true)
+    Integer getConcernArticleCount(String userConcern);
 }

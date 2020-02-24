@@ -1,8 +1,12 @@
 package com.blogger.bloggerservice.service;
 
+import com.blogger.bloggerservice.form.ArticleForm;
+import com.blogger.bloggerservice.response.ResultVo;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Map;
 
 /**
@@ -17,9 +21,6 @@ public interface UtilService {
      */
     Map<String, Object> uploadImg(MultipartFile file);
 
-    /**
-     * 生成图片验证码图片
-     * @return
-     */
-    BufferedImage generateVarifyCode(String varifyCode);
+
+    Map<String, String> packageFile(ArticleForm form) throws IOException;
 }

@@ -30,4 +30,18 @@ public class ArticleReposityCustomImpl implements ArticleReposityCustom {
         List<Map<String, Object>> list = repositoryUtil.queryForMap(sql, objList.toArray());
         return list;
     }
+
+    @Override
+    public List<Map<String, Object>> findConcernArticleList(Integer currentPage, Integer pageSize, String userConcern) {
+        String sql = "select id,article_pic as articlePic,article_title as articleTitle,article_desc " +
+                "as articleDesc,article_count as articleCount,article_info as articleInfo,article_like " +
+                "as articleLike,article_replay as articleReplay,user_id as userId,user_name as userName," +
+                "created_at as createdAt from tb_article where user_id in (?) ORDER BY created_at desc limit ?,?";
+        List<Object> objList = new ArrayList<>();
+        objList.add(userConcern);
+        objList.add(currentPage);
+        objList.add(pageSize);
+        List<Map<String, Object>> list = repositoryUtil.queryForMap(sql, objList.toArray());
+        return list;
+    }
 }

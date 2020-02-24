@@ -27,17 +27,18 @@ public class ArticleForm {
     @NotNull(message = "文章预览信息不能为空", groups = {UploadArticle.class})
     private String articleInfo;
 
+    @NotNull(message = "用户id不能为空", groups = {Package.class, ConcernBlog.class})
     private Integer userId;
 
     /**
      * 页码大小
      */
-    @NotNull(message = "页码大小不能为空", groups = {BlogList.class})
+    @NotNull(message = "页码大小不能为空", groups = {BlogList.class, ConcernBlog.class})
     private Integer pageSize;
     /**
      * 当前页
      */
-    @NotNull(message = "当前页不能为空", groups = {BlogList.class})
+    @NotNull(message = "当前页不能为空", groups = {BlogList.class, ConcernBlog.class})
     private Integer pageIndex;
 
     public String getArticleContent() {
@@ -119,5 +120,12 @@ public class ArticleForm {
     }
 
     public interface AriticleDetail {
+    }
+
+    public interface Package {
+    }
+
+    public interface ConcernBlog {
+
     }
 }

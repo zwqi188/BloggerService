@@ -34,4 +34,11 @@ public interface ArticleService {
      * @return
      */
     ResultVo getAriticleDetail(ArticleForm articleForm);
+
+    /**
+     * 获取关注人的博客
+     * @param articleForm
+     * @return
+     */
+    ResultVo getConcernBlog(ArticleForm articleForm);
 }

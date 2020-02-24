@@ -181,4 +181,48 @@ public class ArticleController {
     public String getArticleDetail(@Validated(value = ArticleForm.AriticleDetail.class) ArticleForm articleForm) {
         return JsonUtils.objectToString(articleService.getAriticleDetail(articleForm));
     }
+
+
+    /**
+     * 获取博客类型
+     * 接口名 /sys/getConcernBlog.json
+     * 入参
+     * userId        Int|M|用户编号
+     * pageIndex            Int|M|页码
+     * pageSize             Int|M|页数
+     * 出参
+     * code            String|M|返回码
+     * message             String|M|返回话术
+     * data                Object|O|信息
+     *
+     * 示例
+     *{
+     * 	"code": "1000",
+     * 	"message": "成功",
+     * 	"data": {
+     * 		"count": 33,
+     * 		"currentPage": 0,
+     * 		"blogList": [
+     *                        {
+     * 				"id": 3,
+     * 				"articlePic": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1581594621148&di=44e75232b73053db8cb6ed0854cbbef4&imgtype=0&src=http%3A%2F%2Ft7.baidu.com%2Fit%2Fu%3D3204887199%2C3790688592%26fm%3D79%26app%3D86%26f%3DJPEG%3Fw%3D4610%26h%3D2968",
+     * 				"articleTitle": "成为数据分析师，抢占互联网红利！",
+     * 				"articleInfo": "认为",
+     * 				"articleLike": 3,
+     * 				"articleReplay": 7,
+     * 				"userId": 1,
+     * 				"userName": "往后",
+     * 				"createdAt": "Feb 20, 2020 9:12:00 PM"
+     *            }
+     * 		]
+     * 	}
+     * }
+     *
+     * @return
+     */
+    @RequestMapping(value = "/getConcernBlog.json", method = RequestMethod.POST)
+    @ResponseBody
+    public String getConcernBlog(@Validated(value = ArticleForm.ConcernBlog.class) ArticleForm articleForm) {
+        return JsonUtils.objectToString(articleService.getConcernBlog(articleForm));
+    }
 }

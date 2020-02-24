@@ -18,4 +18,6 @@ public class Param {
     public static final String BLOG_LIST = "blogList";
     public static final String ARTICLE_DETAIL = "articleDetail";
     public static final String USER = "user";
+    public static final String PACKAGE_PATH = "packagePath";
+    public static final String FILE_NAME = "fileName";
 }

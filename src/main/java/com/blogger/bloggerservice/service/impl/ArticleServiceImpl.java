@@ -13,6 +13,7 @@ import com.blogger.bloggerservice.repository.UserRepository;
 import com.blogger.bloggerservice.repository.custom.ArticleReposityCustom;
 import com.blogger.bloggerservice.response.ResultVo;
 import com.blogger.bloggerservice.service.ArticleService;
+import com.blogger.bloggerservice.utils.ComUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -105,6 +106,25 @@ public class ArticleServiceImpl implements ArticleService {
         returnData.put(Param.ARTICLE_DETAIL, articleDetail);
         returnData.put(Param.USER, userRepository.findByUserId(articleDetail.getUserId()));
         resultVo.setData(returnData);
+        return resultVo;
+    }
+
+    @Override
+    public ResultVo getConcernBlog(ArticleForm articleForm) {
+        User user = userRepository.findByUserId(articleForm.getUserId());
+        if (user == null) {
+            return new ResultVo(ResponseEnums.ERROR_LOGIN_FAIL);
+        }
+        PageInfoBean pageInfoBean = new PageInfoBean(articleForm.getPageIndex(), articleForm.getPageSize());
+        List<Map<String, Object>> articleList = articleReposityCustom.findConcernArticleList(
+                pageInfoBean.getCurrentPage(), pageInfoBean.getPageSize(),
+                user.getUserConcern());
+        Map<String, Object> returnMap = new HashMap<>();
+        returnMap.put(Param.BLOG_LIST, articleList);
+        returnMap.put(Param.COUNT, articleReposity.getConcernArticleCount(user.getUserConcern()));
+        returnMap.put(Param.CURRENT_PAGE, articleForm.getPageIndex());
+        ResultVo resultVo = ResultVo.success();
+        resultVo.setData(returnMap);
         return resultVo;
     }
 }
