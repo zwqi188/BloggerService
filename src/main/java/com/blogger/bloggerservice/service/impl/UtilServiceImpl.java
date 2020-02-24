@@ -46,8 +46,8 @@ public class UtilServiceImpl implements UtilService {
     public Map<String, Object> uploadImg(MultipartFile file) {
         Map<String, Object> returnMap = new HashMap<>();
         String uuidUrl = UUID.randomUUID().toString();
-        String path = baseUrl + imagePath + uuidUrl;
-        String savePath = imagePath + uuidUrl;
+        String path = baseUrl + imagePath + "/" + uuidUrl;
+        String savePath = imagePath + "/" + uuidUrl;
         File dir = new File(path);
         if (!dir.exists()) {
             dir.mkdirs();
