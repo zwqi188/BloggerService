@@ -3,19 +3,16 @@ package com.blogger.bloggerservice.utils;
 import com.blogger.bloggerservice.constant.Constant;
 import com.blogger.bloggerservice.enums.ResponseEnums;
 import com.blogger.bloggerservice.exception.RespException;
-import com.sun.org.apache.xml.internal.utils.res.StringArrayWrapper;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.springframework.util.StringUtils;
 
 import javax.imageio.ImageIO;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Random;
 
 /**

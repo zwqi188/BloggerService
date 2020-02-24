@@ -12,9 +12,11 @@ public class Constant {
     /**
      * 上传图片地址
      */
-    public static final String UPLOAD_IMG_PATH = "../uploadImg/";
 
-    public static final String FILE_PATH = "../filePath/";
+    public static final String BATH_URL = "/usr/tomcat/tomcat/webapps";
+    public static final String UPLOAD_IMG_PATH = "/uploadImg/";
+
+    public static final String FILE_PATH = "/filePath/";
 
     /**
      * 验证码信息常量

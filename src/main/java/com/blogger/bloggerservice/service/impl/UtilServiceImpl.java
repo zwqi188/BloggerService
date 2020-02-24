@@ -8,9 +8,11 @@ import com.blogger.bloggerservice.repository.ArticleReposity;
 import com.blogger.bloggerservice.service.UtilService;
 import com.blogger.bloggerservice.utils.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,6 +30,12 @@ public class UtilServiceImpl implements UtilService {
 
     @Autowired
     private ArticleReposity articleReposity;
+
+    @Value("${upload.base.url}")
+    private String baseUrl;
+
+    @Value("${upload.image.path}")
+    private String imagePath;
     /**
      * 上传图片接口
      *
@@ -37,7 +45,9 @@ public class UtilServiceImpl implements UtilService {
     @Override
     public Map<String, Object> uploadImg(MultipartFile file) {
         Map<String, Object> returnMap = new HashMap<>();
-        String path = Constant.UPLOAD_IMG_PATH + UUID.randomUUID().toString();
+        String uuidUrl = UUID.randomUUID().toString();
+        String path = baseUrl + imagePath + uuidUrl;
+        String savePath = imagePath + uuidUrl;
         File dir = new File(path);
         if (!dir.exists()) {
             dir.mkdirs();
@@ -55,7 +65,7 @@ public class UtilServiceImpl implements UtilService {
             e.printStackTrace();
             returnMap.put("location", null);
         }
-        String rpath = path + "/" + fileName;
+        String rpath = savePath + "/" + fileName;
         returnMap.put("location", rpath);
         return returnMap;
 
