@@ -11,6 +11,8 @@ import com.blogger.bloggerservice.repository.UserRepository;
 import com.blogger.bloggerservice.response.ResultVo;
 import com.blogger.bloggerservice.service.UserService;
 import com.blogger.bloggerservice.utils.ComUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,6 +32,8 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
+    private static Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+
     @Autowired
     private UserRepository userRepository;
 
@@ -41,6 +45,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public ResultVo register(UserForm userForm, HttpServletRequest request) throws RespException {
+        logger.info("开始验证session, [varifyCode] :" + userForm.getVarifyCode());
         String checkCode = ComUtils.getSession(request, Param.RAND_CHECK_CODE);
         if(!userForm.getVarifyCode().equals(checkCode)) {
             return new ResultVo(ResponseEnums.ERROR_SEV_VARIFY_CODE);

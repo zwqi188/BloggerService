@@ -32,7 +32,7 @@ public class CrossFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         httpServletRequest.getSession();
         HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
-        httpResponse.setHeader("Access-Control-Allow-Origin", "*");
+        httpResponse.setHeader("Access-Control-Allow-Origin", httpServletRequest.getHeader("Origin"));
         httpResponse.setHeader("Access-Control-Allow-Methods", "*");
         httpResponse.setHeader("Access-Control-Max-Age", "3600");
         httpResponse.setHeader("Access-Control-Allow-Headers",

@@ -80,43 +80,12 @@
 		</dependency>
 	</dependencies>
 
-	<build>
-		<finalName>bloggerService</finalName>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-				<excludes>
-					<exclude>application-prd.properties</exclude>
-					<exclude>application-dev.properties</exclude>
-					<exclude>application.properties</exclude>
-				</excludes>
-			</resource>
-			<!--需要动态添加的资源-->
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-				<includes>
-					<!--读取打包命令中指定的环境-->
-					<include>application-${profileActive}.properties</include>
-					<include>application.properties</include>
-				</includes>
-			</resource>
-		</resources>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
-
 	<!--定义打包命令指定的环境对应的profileActive变量值-->
 	<profiles>
 		<profile>
 			<id>dev</id>
 			<properties>
-				<profileActive>dev</profileActive>
+				<profile.active>dev</profile.active>
 			</properties>
 			<activation>
 				<!--指定默认激活-->
@@ -126,9 +95,32 @@
 		<profile>
 			<id>pro</id>
 			<properties>
-				<profileActive>pro</profileActive>
+				<profile.active>pro</profile.active>
 			</properties>
 		</profile>
 	</profiles>
+
+	<build>
+		<finalName>bloggerService</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>initialize</phase>
+						<configuration>
+							<quiet>true</quiet>
+							<files>
+								<file>application-${profile.active}.properties</file>
+							</files>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+
 
 </project>

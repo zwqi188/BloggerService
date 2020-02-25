@@ -260,7 +260,7 @@ public class UserController {
      */
     @RequestMapping(value = "/updateUser.json", method = RequestMethod.POST)
     @ResponseBody
-    public String updateUser(@Validated(value = UserForm.Query.class)UserForm user) {
+    public String updateUser(@Validated(value = UserForm.Update.class)UserForm user) {
         return JsonUtils.objectToString(userService.saveUser(user));
     }
 

@@ -3,7 +3,10 @@ package com.blogger.bloggerservice.utils;
 import com.blogger.bloggerservice.constant.Constant;
 import com.blogger.bloggerservice.enums.ResponseEnums;
 import com.blogger.bloggerservice.exception.RespException;
+import com.blogger.bloggerservice.filter.CrossFilter;
 import org.apache.commons.beanutils.ConvertUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
 import javax.imageio.ImageIO;
@@ -20,6 +23,8 @@ import java.util.Random;
  * 公用工具类
  */
 public class ComUtils {
+
+    private static Logger logger = LoggerFactory.getLogger(ComUtils.class);
     /**
      * 通过地址获取图片文件信息
      *
@@ -71,7 +76,11 @@ public class ComUtils {
             session.setAttribute(key, value);
             // 设置session过期时间
             session.setMaxInactiveInterval(Constant.SESSION_TIME);
+            logger.info("保存session成功，[key]:" + key + ",[value]:" + value);
+            String value2 = (String)session.getAttribute(key);
+            logger.info("保存好立即获取session，[key]:" + key + ",[value]:" + value2);
         } catch (Exception e) {
+            logger.error("保存session失败， [key] :" + key + ", [value] :" + value + ", [Exception] " + e);
             throw new RespException(ResponseEnums.EXP_UTL_SET_SESSION);
         }
     }
@@ -90,8 +99,11 @@ public class ComUtils {
             // 把当前生成的验证码存在session中，当用户输入后进行对比
             // 设置session过期时间
             session.setMaxInactiveInterval(Constant.SESSION_TIME);
-            return (String) session.getAttribute(key);
+            String value = (String)session.getAttribute(key);
+            logger.info("获取session成功，[key]:" + key + ",[value]:" + value);
+            return (value) ;
         } catch (Exception e) {
+            logger.error("获取session成功，[key]:" + key + ", [Exception] " + e);
             throw new RespException(ResponseEnums.EXP_UTL_GET_SESSION);
         }
     }
