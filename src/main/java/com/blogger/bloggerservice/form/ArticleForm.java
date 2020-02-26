@@ -18,6 +18,8 @@ public class ArticleForm {
     @NotNull(message = "博客内容不能为空", groups = {UploadArticle.class})
     private String articleContent;
 
+    private String articlePic;
+
     @NotNull(message = "博客查询编号不能为空", groups = {AriticleDetail.class})
     private Integer articleId;
 
@@ -111,6 +113,14 @@ public class ArticleForm {
 
     public void setArticleInfo(String articleInfo) {
         this.articleInfo = articleInfo;
+    }
+
+    public String getArticlePic() {
+        return articlePic;
+    }
+
+    public void setArticlePic(String articlePic) {
+        this.articlePic = articlePic;
     }
 
     public interface UploadArticle {

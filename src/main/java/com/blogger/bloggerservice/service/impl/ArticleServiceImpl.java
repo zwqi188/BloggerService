@@ -54,6 +54,7 @@ public class ArticleServiceImpl implements ArticleService {
         article.setArticleTypeId(articleForm.getArticleTypeId());
         article.setArticleInfo(articleForm.getArticleInfo());
         article.setArticleCount(articleForm.getArticleCount());
+        article.setArticlePic(articleForm.getArticlePic());
         article.setUserId(articleForm.getUserId());
         article.setArticleReplay(0);
         article.setUserName(user.getLoginName());

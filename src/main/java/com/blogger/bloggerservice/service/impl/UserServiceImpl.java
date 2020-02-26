@@ -8,6 +8,7 @@ import com.blogger.bloggerservice.exception.RespException;
 import com.blogger.bloggerservice.form.UserForm;
 import com.blogger.bloggerservice.model.User;
 import com.blogger.bloggerservice.repository.UserRepository;
+import com.blogger.bloggerservice.repository.custom.UserReposityCustom;
 import com.blogger.bloggerservice.response.ResultVo;
 import com.blogger.bloggerservice.service.UserService;
 import com.blogger.bloggerservice.utils.ComUtils;
@@ -20,10 +21,7 @@ import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * 用户service
@@ -36,6 +34,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserReposityCustom userReposityCustom;
 
     /**
      * 用户注册
@@ -154,12 +155,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResultVo queryUser(UserForm user) {
-        User queryUser = userRepository.findByUserId(user.getUserId());
-        if(queryUser == null) {
+        List<Map<String, Object>> userList = userReposityCustom.findByUserId(user.getUserId());
+        if(userList.get(0) == null) {
             return new ResultVo(ResponseEnums.ERROR_SEV_USER_NOT_EXIST);
         }
         ResultVo response = ResultVo.success();
-        response.setData(queryUser);
+        response.setData(userList.get(0));
         return response;
     }
 
