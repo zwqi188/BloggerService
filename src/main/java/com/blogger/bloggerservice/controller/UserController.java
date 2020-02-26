@@ -195,8 +195,8 @@ public class UserController {
      */
     @RequestMapping(value = "/getRecommendUser.json", method = RequestMethod.POST)
     @ResponseBody
-    public String getRecommendUser(@Validated(value = UserForm.GetRecommendUser.class)UserForm user) {
-        return JsonUtils.objectToString(userService.getRecommendUser(user));
+    public String getRecommendUser(@Validated(value = UserForm.GetRecommendUser.class)UserForm form) {
+        return JsonUtils.objectToString(userService.getRecommendUser(form));
     }
 
 

@@ -1,5 +1,6 @@
 package com.blogger.bloggerservice.service.impl;
 
+import com.blogger.bloggerservice.bean.PageInfoBean;
 import com.blogger.bloggerservice.bean.RecommendUserBean;
 import com.blogger.bloggerservice.constant.Constant;
 import com.blogger.bloggerservice.constant.Param;
@@ -9,9 +10,11 @@ import com.blogger.bloggerservice.form.UserForm;
 import com.blogger.bloggerservice.model.User;
 import com.blogger.bloggerservice.repository.UserRepository;
 import com.blogger.bloggerservice.repository.custom.UserReposityCustom;
+import com.blogger.bloggerservice.repository.custom.impl.UserRepositoryCustomImpl;
 import com.blogger.bloggerservice.response.ResultVo;
 import com.blogger.bloggerservice.service.UserService;
 import com.blogger.bloggerservice.utils.ComUtils;
+import com.blogger.bloggerservice.utils.JsonUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -102,54 +105,43 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public ResultVo getRecommendUser(UserForm user) {
-        User queryUser = userRepository.findByUserId(user.getUserId());
-        if(queryUser == null) {
-            return new ResultVo(ResponseEnums.ERROR_SEV_USER_NOT_EXIST);
-        }
+    public ResultVo getRecommendUser(UserForm form) {
+        User queryUser = userRepository.findByUserId(form.getUserId());
+        PageInfoBean pageInfoBean = new PageInfoBean(form.getIndex(), Constant.RECOMMEND_USER_NUMBER);
         ResultVo response = ResultVo.success();
-        List<RecommendUserBean> recommendUserBeanList = new ArrayList<>();
-        List<User> responseUser = new ArrayList<>();
-        //可以拆分的页数
-        Integer page = 0;
-        //最后剩余的条数
-        Integer last = 0;
-        if(!StringUtils.isEmpty(queryUser.getUserConcern())) {
-            Integer[] concernList = ComUtils.convertConcernList(queryUser.getUserConcern());
-            Integer[] arrayCopy = null;
-            page = concernList.length / Constant.RECOMMEND_USER_NUMBER;
-            last = concernList.length % Constant.RECOMMEND_USER_NUMBER;
-            // 索引小于页数或者同时满足索引等于页数并且余下的大于0
-            Boolean needCopy = (user.getIndex() - 1) <= page
-                    || (page.equals(user.getIndex() -1) && last > 0);
-            if (needCopy) {
-                Integer from = user.getIndex() == 1 ? 0: (user.getIndex() - 1 ) * Constant.RECOMMEND_USER_NUMBER - 1;
-                arrayCopy = Arrays.copyOfRange(concernList,
-                        from, Constant.RECOMMEND_USER_NUMBER);
+        List<Map<String, Object>> returnList = new ArrayList<>();
+        List<Integer> userIdList = null;
+        if (queryUser != null) {
+            userIdList = ComUtils.convertUserIdList(queryUser.getUserConcern());
+            String userIdString = ComUtils.generateIdString(userIdList,
+                    pageInfoBean.getCurrentIndex(), pageInfoBean.getPageSize());
+            returnList = userReposityCustom.findByIdIn(userIdString);
+            returnList = ComUtils.hasConcern(returnList, true);
+            // 预防查询之后数据不够5条，重新设置索引，开始查询未关注
+            pageInfoBean.setCurrentPage(0);
+        }
+        if (returnList.size() < Constant.RECOMMEND_USER_NUMBER) {
+            String userIdString = null;
+            if (userIdList != null) {
+                userIdString = ComUtils.generateIdString(userIdList, 0, userIdList.size()) + ",";
             }
-            if (arrayCopy != null) {
-                responseUser = userRepository.findByIdIn(arrayCopy);
-                for (User users: responseUser) {
-                    RecommendUserBean recommendUserBean = new RecommendUserBean();
-                    BeanUtils.copyProperties(users, recommendUserBean);
-                    recommendUserBean.setHasConcern(true);
-                    recommendUserBeanList.add(recommendUserBean);
+            if (form.getUserId() != null) {
+                userIdString = (userIdString == null) ? "" : userIdString;
+                userIdString += "'" + form.getUserId() + "'";
+            }
+            List<Map<String, Object>> userList = userReposityCustom.findByIdNotIn(userIdString,
+                    pageInfoBean.getCurrentPage() * pageInfoBean.getPageSize(),
+                    pageInfoBean.getPageSize());
+            userList = ComUtils.hasConcern(userList, false);
+            for(Map<String, Object> user : userList) {
+                if (returnList.size() == Constant.RECOMMEND_USER_NUMBER) {
+                    continue;
                 }
+                returnList.add(user);
             }
         }
-        if (responseUser.size() < Constant.RECOMMEND_USER_NUMBER) {
-            Integer start = 0;
-            Integer end = Constant.RECOMMEND_USER_NUMBER - responseUser.size();
-            responseUser = userRepository.findByTopAndNoIn(
-                    queryUser.getUserConcern(), start, end);
-            for (User users: responseUser) {
-                RecommendUserBean recommendUserBean = new RecommendUserBean();
-                BeanUtils.copyProperties(users, recommendUserBean);
-                recommendUserBean.setHasConcern(false);
-                recommendUserBeanList.add(recommendUserBean);
-            }
-        }
-        response.setData(recommendUserBeanList);
+
+        response.setData(returnList);
         return response;
     }
 

@@ -36,7 +36,7 @@ public interface UserService {
      * 获得推荐作者
      * @return
      */
-    ResultVo getRecommendUser(UserForm user);
+    ResultVo getRecommendUser(UserForm form);
 
     /**
      * 查询单个用户

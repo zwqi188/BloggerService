@@ -1,6 +1,7 @@
 package com.blogger.bloggerservice.utils;
 
 import com.blogger.bloggerservice.constant.Constant;
+import com.blogger.bloggerservice.constant.Param;
 import com.blogger.bloggerservice.enums.ResponseEnums;
 import com.blogger.bloggerservice.exception.RespException;
 import com.blogger.bloggerservice.filter.CrossFilter;
@@ -10,12 +11,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
 import javax.imageio.ImageIO;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -191,5 +196,42 @@ public class ComUtils {
             builder = builder + array[i] + ",";
         }
         return builder.substring(0, builder.length() - 1);
+    }
+
+    public static List<Integer> convertUserIdList(String userConcern) {
+        if (StringUtils.isEmpty(userConcern)) {
+            return null;
+        }
+        List<Integer> userList = new ArrayList<>();
+        String[] splitId = userConcern.split(",");
+        for (String id: splitId) {
+            userList.add(Integer.valueOf(id));
+        }
+        return userList;
+    }
+
+    public static String generateIdString(List<Integer> userIdList, Integer currentIndex, Integer size) {
+        if (userIdList == null) {
+            return null;
+        }
+        StringBuilder sb = new StringBuilder();
+        Integer index = 0;
+        for (int i = currentIndex; i < userIdList.size(); i++) {
+            if (index < size) {
+                index ++;
+                sb.append("'" + userIdList.get(i) + "',");
+            }
+        }
+        if (StringUtils.isEmpty(sb.toString())) {
+            return null;
+        }
+        return sb.substring(0, sb.length() - 1);
+    }
+
+    public static List<Map<String, Object>> hasConcern(List<Map<String, Object>> returnList, boolean b) {
+        for(int i = 0; i < returnList.size(); i++) {
+            returnList.get(i).put(Param.HAS_CONCERN, b);
+        }
+        return returnList;
     }
 }

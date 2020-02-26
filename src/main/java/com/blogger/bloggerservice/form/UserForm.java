@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
  */
 public class UserForm {
 
-    @NotNull(message = "用户id不能为空", groups = {LoginOut.class, GetRecommendUser.class, Query.class, Update.class, UpdatePassword.class})
+    @NotNull(message = "用户id不能为空", groups = {LoginOut.class, Query.class, Update.class, UpdatePassword.class})
     private Integer userId;
 
     @NotNull(message = "推荐用户索引不能为空", groups = {GetRecommendUser.class})

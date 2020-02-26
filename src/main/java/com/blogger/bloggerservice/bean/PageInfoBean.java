@@ -15,6 +15,11 @@ public class PageInfoBean {
      */
     private Integer pageSize;
 
+    /**
+     * 当前索引
+     */
+    private Integer currentIndex;
+
     public PageInfoBean() {
 
     }
@@ -23,8 +28,9 @@ public class PageInfoBean {
         this.currentPage = currentPage;
         if (currentPage <= 1) {
             this.currentPage = 0;
+            this.currentIndex = 0;
         } else {
-            this.currentPage = (currentPage - 1) * pageSize;
+            this.currentIndex = (currentPage - 1) * pageSize;
         }
         this.pageSize = pageSize;
     }
@@ -43,5 +49,13 @@ public class PageInfoBean {
 
     public void setCurrentPage(Integer currentPage) {
         this.currentPage = currentPage;
+    }
+
+    public Integer getCurrentIndex() {
+        return currentIndex;
+    }
+
+    public void setCurrentIndex(Integer currentIndex) {
+        this.currentIndex = currentIndex;
     }
 }

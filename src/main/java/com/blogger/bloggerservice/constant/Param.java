@@ -20,4 +20,5 @@ public class Param {
     public static final String USER = "user";
     public static final String PACKAGE_PATH = "packagePath";
     public static final String FILE_NAME = "fileName";
+    public static final String HAS_CONCERN = "hasConcern";
 }
