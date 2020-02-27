@@ -21,4 +21,18 @@ public interface MessageService {
      * @return
      */
     ResultVo deleteMessage(MessageForm form);
+
+    /**
+     * 获取每个分类的数量
+     * @param form
+     * @return
+     */
+    ResultVo getMessageCount(MessageForm form);
+
+    /**
+     * 更新消息类型
+     * @param form
+     * @return
+     */
+    ResultVo updateReadStatus(MessageForm form);
 }

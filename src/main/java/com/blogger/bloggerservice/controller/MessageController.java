@@ -90,4 +90,57 @@ public class MessageController {
         return JsonUtils.objectToString(messageService.deleteMessage(form));
     }
 
+
+    /**
+     * 查询未看列表
+     * 接口名 /sys/getMessageCount.json
+     * 入参
+     * userId             Integer|M|用户id
+     * 出参
+     * code            String|M|返回码
+     * message             String|M|返回话术
+     * data                Object|O|信息
+     * <p>
+     * 示例
+     *{
+     * 	"code": "1000",
+     * 	"message": "成功",
+     * 	"data": {
+     * 		"other": 2,
+     * 		"comment": 3,
+     * 		"follow": 1,
+     * 		"thumbs": 3
+     *        }
+     * }
+     *
+     * @return
+     */
+    @RequestMapping(value = "/getMessageCount.json", method = RequestMethod.POST)
+    @ResponseBody
+    public String getMessageCount(@Validated(value = MessageForm.CountMessage.class) MessageForm form) {
+        return JsonUtils.objectToString(messageService.getMessageCount(form));
+    }
+
+
+    /**
+     * 查询未看列表
+     * 接口名 /sys/updateReadStatus.json
+     * 入参
+     * userId             Integer|M|用户id
+     * messageType        Integer|M|消息类型
+     * 出参
+     * code            String|M|返回码
+     * message             String|M|返回话术
+     * data                Object|O|信息
+     * <p>
+     * 示例
+     *
+     * @return
+     */
+    @RequestMapping(value = "/updateReadStatus.json", method = RequestMethod.POST)
+    @ResponseBody
+    public String updateReadStatus(@Validated(value = MessageForm.ReadMessage.class) MessageForm form) {
+        return JsonUtils.objectToString(messageService.updateReadStatus(form));
+    }
+
 }

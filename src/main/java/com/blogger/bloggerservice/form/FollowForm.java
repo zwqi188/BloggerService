@@ -10,8 +10,11 @@ public class FollowForm {
     @NotNull(message = "用户编号不能为空", groups = {Follow.class, UnFollow.class, QueryFollow.class})
     private Integer userId;
 
-    @NotNull(message = "关注不能为空", groups = {Follow.class, UnFollow.class})
+    @NotNull(message = "关注id不能为空", groups = {Follow.class, UnFollow.class})
     private Integer followId;
+
+    @NotNull(message = "关注人不能为空", groups = {Follow.class})
+    private String followName;
 
     public FollowForm() {
     }
@@ -30,6 +33,14 @@ public class FollowForm {
 
     public void setFollowId(Integer followId) {
         this.followId = followId;
+    }
+
+    public String getFollowName() {
+        return followName;
+    }
+
+    public void setFollowName(String followName) {
+        this.followName = followName;
     }
 
     public interface Follow {

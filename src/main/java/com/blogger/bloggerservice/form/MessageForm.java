@@ -7,10 +7,10 @@ import javax.validation.constraints.NotNull;
  */
 public class MessageForm {
 
-    @NotNull(message = "用户id不能为空", groups = {QueryMessage.class})
+    @NotNull(message = "用户id不能为空", groups = {QueryMessage.class, CountMessage.class, ReadMessage.class})
     private Integer userId;
 
-    @NotNull(message = "消息类型不能为空", groups = {QueryMessage.class})
+    @NotNull(message = "消息类型不能为空", groups = {QueryMessage.class, ReadMessage.class})
     private Integer messageType;
 
     @NotNull(message = "消息id不能为空", groups = {DeleteMessage.class})
@@ -47,5 +47,11 @@ public class MessageForm {
     }
 
     public interface DeleteMessage {
+    }
+
+    public interface CountMessage {
+    }
+
+    public interface ReadMessage {
     }
 }

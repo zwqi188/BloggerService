@@ -28,4 +28,8 @@ public class Constant {
      * 默认推荐用户数量
      */
     public static final Integer RECOMMEND_USER_NUMBER = 5;
+
+    public static final Integer NOT_READ = 0;
+
+    public static final Integer READ = 1;
 }

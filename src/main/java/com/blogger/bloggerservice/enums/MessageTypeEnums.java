@@ -8,7 +8,7 @@ public enum MessageTypeEnums {
     COMMENT(1, "评论"),
     FOLLOW(2, "关注"),
     THUMBS(3, "点赞"),
-    NOTICE(4, "其他");
+    OTHER(4, "其他");
     /**
      * code
      */
@@ -24,4 +24,19 @@ public enum MessageTypeEnums {
         this.name = msg;
     }
 
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
