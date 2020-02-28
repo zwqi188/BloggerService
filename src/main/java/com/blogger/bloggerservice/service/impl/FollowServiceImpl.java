@@ -57,6 +57,7 @@ public class FollowServiceImpl implements FollowService {
         return ResultVo.success();
     }
 
+    @Transactional
     @Override
     public ResultVo UnFollow(FollowForm form) {
         User user = userRepository.findByUserId(form.getUserId());

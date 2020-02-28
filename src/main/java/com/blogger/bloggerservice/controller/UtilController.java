@@ -104,27 +104,7 @@ public class UtilController {
         }
         bis.close();
         bos.close();
-
-//        FileInputStream fis = new FileInputStream(file);
-//        BufferedInputStream buff = new BufferedInputStream(fis);
-//        // 相当于我们的缓存
-//        byte[] b = new byte[1024];
-//        // 该值用于计算当前实际下载了多少字节
-//        long k = 0;
-//        // 从response对象中得到输出流,准备下载
-//        OutputStream myout = response.getOutputStream();
-//        // 开始循环下载
-//        while (k < file.length()) {
-//            int j = buff.read(b, 0, 1024);
-//            k += j;
-//            myout.write(b, 0, j);
-//        }
-//        // 刷新此输出流并强制将所有缓冲的输出字节被写出,关闭流
-//        myout.flush();
-//        myout.close();
-//        buff.close();
-//        fis.close();//删除生成的压缩包文件
-//        file.delete();
+        file.delete();
     }
 
     /**

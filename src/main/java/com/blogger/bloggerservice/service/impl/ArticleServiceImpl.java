@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.transaction.Transactional;
 import java.util.*;
 
 /**
@@ -43,6 +44,7 @@ public class ArticleServiceImpl implements ArticleService {
      * @param articleForm
      * @return
      */
+    @Transactional
     @Override
     public ResultVo uploadArticle(ArticleForm articleForm) {
         User user = userRepository.findByUserId(articleForm.getUserId());
@@ -63,15 +65,11 @@ public class ArticleServiceImpl implements ArticleService {
         article.setArticlePic(articleForm.getArticlePic());
         article.setUserId(articleForm.getUserId());
         article.setArticleReplay(0);
-        article.setUserName(user.getLoginName());
         article.setArticleLike(0);
         article.setUpdatedAt(new Date());
         article.setCreatedAt(new Date());
-        Article save = articleReposity.save(article);
-        if(save != null) {
-            return ResultVo.success();
-        }
-        return ResultVo.fail();
+        articleReposity.save(article);
+        return ResultVo.success();
 
     }
 

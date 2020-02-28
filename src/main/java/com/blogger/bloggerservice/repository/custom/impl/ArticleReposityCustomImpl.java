@@ -20,10 +20,10 @@ public class ArticleReposityCustomImpl implements ArticleReposityCustom {
 
     @Override
     public List<Map<String, Object>> findArticleList(Integer pageIndex, Integer pageSize) {
-        String sql = "select id,article_pic as articlePic,article_title as articleTitle,article_desc " +
-                "as articleDesc,article_count as articleCount,article_info as articleInfo,article_like " +
-                "as articleLike,article_replay as articleReplay,user_id as userId,user_name as userName," +
-                "created_at as createdAt from tb_article limit ?,?";
+        String sql = "select a.id,a.article_pic as articlePic,a.article_title as articleTitle,a.article_desc " +
+                " as articleDesc,a.article_count as articleCount,a.article_info as articleInfo,a.article_like " +
+                " as articleLike,a.article_replay as articleReplay,a.user_id as userId,b.user_name as userName," +
+                " a.created_at as createdAt,b.is_admin as isAdmin from tb_article a,tb_user b where a.user_id = b.id limit ?,?";
         List<Object> objList = new ArrayList<>();
         objList.add(pageIndex);
         objList.add(pageSize);

@@ -82,12 +82,6 @@ public class Article {
     @Column(name = "user_id")
     private Integer userId;
 
-    /**
-     * 用户名字
-     */
-    @Column(name = "user_name")
-    private String userName;
-
 
     @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
@@ -185,14 +179,6 @@ public class Article {
 
     public void setArticleDesc(String articleDesc) {
         this.articleDesc = articleDesc;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getArticlePic() {

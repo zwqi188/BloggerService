@@ -171,8 +171,8 @@ public class UserServiceImpl implements UserService {
         if (!StringUtils.isEmpty(user.getAvatarUrl())) {
             queryUser.setAvatarUrl(user.getAvatarUrl());
         }
-        if (!StringUtils.isEmpty(user.getLoginName())) {
-            queryUser.setLoginName(user.getLoginName());
+        if (!StringUtils.isEmpty(user.getUserName())) {
+            queryUser.setUserName(user.getUserName());
         }
         if (!StringUtils.isEmpty(user.getUserGender())) {
             queryUser.setUserGender(user.getUserGender());
