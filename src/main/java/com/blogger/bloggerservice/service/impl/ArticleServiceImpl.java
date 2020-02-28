@@ -78,7 +78,7 @@ public class ArticleServiceImpl implements ArticleService {
     public ResultVo getBlogList(ArticleForm articleForm) {
         PageInfoBean pageInfoBean = new PageInfoBean(articleForm.getPageIndex(), articleForm.getPageSize());
         List<Map<String, Object>> articleList = articleReposityCustom.findArticleList(
-                pageInfoBean.getCurrentPage(), pageInfoBean.getPageSize());
+                pageInfoBean.getCurrentIndex(), pageInfoBean.getPageSize());
         Map<String, Object> returnMap = new HashMap<>();
         returnMap.put(Param.BLOG_LIST, articleList);
         returnMap.put(Param.COUNT, articleReposity.getArticleListCount());
@@ -118,7 +118,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
         PageInfoBean pageInfoBean = new PageInfoBean(articleForm.getPageIndex(), articleForm.getPageSize());
         List<Map<String, Object>> articleList = articleReposityCustom.findConcernArticleList(
-                pageInfoBean.getCurrentPage(), pageInfoBean.getPageSize(),
+                pageInfoBean.getCurrentIndex(), pageInfoBean.getPageSize(),
                 user.getUserConcern());
         Map<String, Object> returnMap = new HashMap<>();
         returnMap.put(Param.BLOG_LIST, articleList);
