@@ -16,6 +16,7 @@ import com.blogger.bloggerservice.service.ArticleService;
 import com.blogger.bloggerservice.utils.ComUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -48,7 +49,12 @@ public class ArticleServiceImpl implements ArticleService {
         if (user == null) {
             return new ResultVo(ResponseEnums.ERROR_LOGIN_FAIL);
         }
-        Article article = new Article();
+        Article article = null;
+        if (articleForm.getId() != null) {
+            article = articleReposity.getArticleDetail(articleForm.getId());
+        } else {
+            article = new Article();
+        }
         article.setArticleTitle(articleForm.getArticleTitle());
         article.setArticleContent(articleForm.getArticleContent());
         article.setArticleTypeId(articleForm.getArticleTypeId());

@@ -9,6 +9,11 @@ import javax.validation.constraints.NotNull;
  */
 public class ArticleForm {
 
+    /**
+     * 更新博客时使用的id
+     */
+    private Integer id;
+
     @NotNull(message = "博客分类不能为空", groups = {UploadArticle.class})
     private Integer articleTypeId;
 
@@ -121,6 +126,14 @@ public class ArticleForm {
 
     public void setArticlePic(String articlePic) {
         this.articlePic = articlePic;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public interface UploadArticle {
