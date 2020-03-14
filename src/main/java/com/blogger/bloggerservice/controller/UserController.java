@@ -1,8 +1,12 @@
 package com.blogger.bloggerservice.controller;
 
+import com.blogger.bloggerservice.aspect.NeedCheckLogin;
 import com.blogger.bloggerservice.exception.RespException;
+import com.blogger.bloggerservice.form.RecommendForm;
 import com.blogger.bloggerservice.form.UserForm;
+import com.blogger.bloggerservice.response.ResultVo;
 import com.blogger.bloggerservice.service.UserService;
+import com.blogger.bloggerservice.utils.ComUtils;
 import com.blogger.bloggerservice.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.UUID;
 
 /**
  * @author admin
@@ -65,9 +70,13 @@ public class UserController {
      */
     @RequestMapping(value = "/login.json", method = RequestMethod.POST)
     @ResponseBody
-    public String login(@Validated(value = UserForm.Login.class) UserForm login,
+    public ResultVo login(@Validated(value = UserForm.Login.class) UserForm login,
                         HttpServletRequest request) throws RespException {
-        return JsonUtils.objectToString(userService.login(login, request));
+        ResultVo result = userService.login(login, request);
+        String token = UUID.randomUUID().toString();
+        request.getSession().setAttribute(token, result.getData());
+        result.setData(token);
+        return result;
     }
 
 
@@ -193,9 +202,11 @@ public class UserController {
      * }
      * @return
      */
+    @NeedCheckLogin
     @RequestMapping(value = "/getRecommendUser.json", method = RequestMethod.POST)
     @ResponseBody
-    public String getRecommendUser(@Validated(value = UserForm.GetRecommendUser.class)UserForm form) {
+    public String getRecommendUser(@Validated(value = RecommendForm.GetRecommendUser.class) RecommendForm form) {
+        System.out.println("checkUserIdController:" + form.getId());
         return JsonUtils.objectToString(userService.getRecommendUser(form));
     }
 

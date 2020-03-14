@@ -1,6 +1,7 @@
 package com.blogger.bloggerservice.service;
 
 import com.blogger.bloggerservice.exception.RespException;
+import com.blogger.bloggerservice.form.RecommendForm;
 import com.blogger.bloggerservice.form.UserForm;
 import com.blogger.bloggerservice.response.ResultVo;
 
@@ -36,7 +37,7 @@ public interface UserService {
      * 获得推荐作者
      * @return
      */
-    ResultVo getRecommendUser(UserForm form);
+    ResultVo getRecommendUser(RecommendForm form);
 
     /**
      * 查询单个用户

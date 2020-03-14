@@ -25,4 +25,5 @@ public class Param {
     public static final String FOLLOW = "follow";
     public static final String THUMBS = "thumbs";
     public static final String OTHER = "other";
+    public static final String TOKEN = "token";
 }

@@ -6,6 +6,7 @@ import com.blogger.bloggerservice.constant.Constant;
 import com.blogger.bloggerservice.constant.Param;
 import com.blogger.bloggerservice.enums.ResponseEnums;
 import com.blogger.bloggerservice.exception.RespException;
+import com.blogger.bloggerservice.form.RecommendForm;
 import com.blogger.bloggerservice.form.UserForm;
 import com.blogger.bloggerservice.model.User;
 import com.blogger.bloggerservice.repository.UserRepository;
@@ -105,8 +106,8 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public ResultVo getRecommendUser(UserForm form) {
-        User queryUser = userRepository.findByUserId(form.getUserId());
+    public ResultVo getRecommendUser(RecommendForm form) {
+        User queryUser = userRepository.findByUserId(form.getId());
         PageInfoBean pageInfoBean = new PageInfoBean(form.getIndex(), Constant.RECOMMEND_USER_NUMBER);
         ResultVo response = ResultVo.success();
         List<Map<String, Object>> returnList = new ArrayList<>();
@@ -125,9 +126,9 @@ public class UserServiceImpl implements UserService {
             if (userIdList != null) {
                 userIdString = ComUtils.generateIdString(userIdList, 0, userIdList.size()) + ",";
             }
-            if (form.getUserId() != null) {
+            if (form.getId() != null) {
                 userIdString = (userIdString == null) ? "" : userIdString;
-                userIdString += "'" + form.getUserId() + "'";
+                userIdString += "'" + form.getId() + "'";
             }
             List<Map<String, Object>> userList = userReposityCustom.findByIdNotIn(userIdString,
                     pageInfoBean.getCurrentPage() * pageInfoBean.getPageSize(),
